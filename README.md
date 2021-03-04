@@ -39,4 +39,4 @@ We are recommending you use docker:
 
 ## Coding guidelines wiki page
 
-https://github.com/DTS-STN/openfisca-canada-dts/wiki/Coding-guidelines
+https://github.com/DTS-STN/openfisca-canada-dts-csps/wiki/Coding-guidelines
