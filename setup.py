@@ -13,7 +13,7 @@ setup(
     description=u'OpenFisca tax and benefit system for Canada',
     keywords='benefit microsimulation social tax',
     license='http://www.fsf.org/licensing/licenses/agpl-3.0.html',
-    url='https://github.com/DTS-STN/openfisca-canada-dts',
+    url='https://github.com/DTS-STN/openfisca-canada-dts-csps',
     include_package_data=True,  # Will read MANIFEST.in
     install_requires=[
         'OpenFisca-Core == 34.7.5',
