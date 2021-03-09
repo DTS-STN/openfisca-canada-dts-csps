@@ -6,4 +6,7 @@ build-run-dev:
 	docker-compose up --build --detach --force-recreate
 
 test:
-	docker exec openfisca_dev openfisca test -c openfisca_canada openfisca_canada/tests
+	docker exec openfisca_dev openfisca test -c openfisca_canada_mvohwr openfisca_canada_mvohwr/tests
+
+test-local:
+	openfisca-run-test --country-package openfisca_canada_mvohwr openfisca_canada_mvohwr/tests
