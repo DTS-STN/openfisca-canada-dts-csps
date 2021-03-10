@@ -16,7 +16,7 @@ setup(
     url='https://github.com/DTS-STN/openfisca-canada-dts-csps',
     include_package_data=True,  # Will read MANIFEST.in
     install_requires=[
-        'Dts-OpenFisca-Core == 34.8.0',
+        'Dts-OpenFisca-Core >= 34.7.5',
         ],
     extras_require={
         'test': [
