@@ -1,8 +1,0 @@
-description: the maximum hours of work until overtime is required
-metadata:
-  unit: double
-values:
-  2020-09-08:
-    value: 60
-  2020-10-08:
-    value: 40
