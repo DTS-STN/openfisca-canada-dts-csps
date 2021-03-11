@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='OpenFisca-canada',
+    name='OpenFisca-canada-csps',
     version='12.0.0',
     author='Government of Canada, Digital Technology Solutions - Solutions de technologies numériques',
     author_email='michael.bungay@hrsdc-rhdcc.gc.ca,tjharrop@gmail.com',
@@ -16,7 +16,7 @@ setup(
     url='https://github.com/DTS-STN/openfisca-canada-dts-csps',
     include_package_data=True,  # Will read MANIFEST.in
     install_requires=[
-        'OpenFisca-Core >=30.0.0,<31.0',
+        'Dts-OpenFisca-Core >= 34.7.5',
         ],
     extras_require={
         'test': [

@@ -1,0 +1,32 @@
+---
+- name: "Employee with mixed employment possibilities"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employee_does_not_work_as_a_driver_or_as_a_warehouse_worker:
+        employment__is_driver: false
+        employment__is_warehouse_worker: false
+      employee_who_only_works_as_a_driver:
+        employment__is_driver: true
+        employment__is_warehouse_worker: false
+      employee_who_only_works_as_a_warehouse_worker:
+        employment__is_driver: false
+        employment__is_warehouse_worker: true
+      employee_who_works_as_a_driver_and_a_warehouse_worker:
+        employment__is_driver: true
+        employment__is_warehouse_worker: true
+  output:
+    persons:
+      employee_does_not_work_as_a_driver_or_as_a_warehouse_worker:
+        employment__is_mixed_employment:
+          - false
+      employee_who_only_works_as_a_driver:
+        employment__is_mixed_employment:
+          - false
+      employee_who_only_works_as_a_warehouse_worker:
+        employment__is_mixed_employment:
+          - false
+      employee_who_works_as_a_driver_and_a_warehouse_worker:
+        employment__is_mixed_employment:
+          - true
