@@ -5,9 +5,9 @@
   input:
     persons:
       employee_has_overtime_as_a_bus_operator:
-        hour_worked__daily__bus_operator: 4
+        hours_worked__daily__bus_operator: 4
   output:
     persons:
       employee_has_overtime_as_a_bus_operator:
-        hour_worked__daily__overtime_hours:
+        hours_worked__daily__overtime_hours:
           - 4
