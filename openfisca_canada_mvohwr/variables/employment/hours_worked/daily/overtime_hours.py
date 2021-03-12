@@ -1,7 +1,7 @@
 from openfisca_core.model_api import *
 from openfisca_canada_mvohwr.entities import Person
 
-class hour_worked__daily__overtime_hours(Variable):
+class hours_worked__daily__overtime_hours(Variable):
     value_type = float
     entity = Person
     label = u"Work for an employer that does not involve operating a vehicle"
@@ -9,4 +9,4 @@ class hour_worked__daily__overtime_hours(Variable):
     reference = u"TODO"
 
     def formula(persons, period, parameters):
-        return persons("hour_worked__daily__bus_operator",period)
+        return persons("hours_worked__daily__bus_operator",period)
