@@ -14,4 +14,4 @@ test:
 
 test-local:
 	pip install .
-	openfisca-run-test --country-package openfisca_canada_mvohwr openfisca_canada_mvohwr/tests
+	openfisca test --country-package openfisca_canada_mvohwr openfisca_canada_mvohwr/tests
