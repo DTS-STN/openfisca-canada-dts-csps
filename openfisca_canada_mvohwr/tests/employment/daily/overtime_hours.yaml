@@ -1,0 +1,13 @@
+---
+- name: "Employee with mixed employment possibilities"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employee_has_overtime_as_a_bus_operator:
+        hour_worked__daily__bus_operator: 4
+  output:
+    persons:
+      employee_has_overtime_as_a_bus_operator:
+        hour_worked__daily__overtime_hours:
+          - 4
