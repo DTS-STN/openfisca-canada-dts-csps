@@ -1,0 +1,6 @@
+description: the standard daily hours of work for city motor vehicle operator according to the motor vehicle operator Code
+metadata:
+  unit: double
+values:
+  1970-01-01:
+    value: 9

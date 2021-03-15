@@ -1,0 +1,6 @@
+description: the standard reduced holiday weekly hours of work for city motor vehicle worker according to the Motor vehicle operator
+metadata:
+  unit: double
+values:
+  1970-01-01:
+    value: 36
