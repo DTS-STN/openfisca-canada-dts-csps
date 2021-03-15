@@ -1,7 +1,7 @@
 version: '3'
 services:
   development:
-    container_name: openfisca_dev
+    container_name: openfisca_dev_mvo
     ports: 
       - "5000:5000"
     build:
