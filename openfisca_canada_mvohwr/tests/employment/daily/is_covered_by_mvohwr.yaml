@@ -1,0 +1,32 @@
+---
+- name: "Tests to ensure mvohwr is covered correctly"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employee_does_not_transport_goods_or_passangers_or_mail:
+        employment__does_transport_goods_or_passangers_by_motor_vehicle: false
+        employment__does_transport_mail_in_canada: false
+      employee_does_both_transport_goods_or_passangers_or_mail:
+        employment__does_transport_goods_or_passangers_by_motor_vehicle: true
+        employment__does_transport_mail_in_canada: true
+      employee_does_transport_goods_or_passangers_not_mail:
+        employment__does_transport_goods_or_passangers_by_motor_vehicle: true
+        employment__does_transport_mail_in_canada: false
+      employee_does_not_transport_goods_or_passangers_but_does_mail:
+        employment__does_transport_goods_or_passangers_by_motor_vehicle: false
+        employment__does_transport_mail_in_canada: true
+  output:
+    persons:
+      employee_does_not_transport_goods_or_passangers_or_mail:
+        employment__is_covered_by_mvohwr:
+          - false
+      employee_does_both_transport_goods_or_passangers_or_mail:
+        employment__is_covered_by_mvohwr:
+          - true
+      employee_does_transport_goods_or_passangers_not_mail:
+        employment__is_covered_by_mvohwr:
+          - true
+      employee_does_not_transport_goods_or_passangers_but_does_mail:
+        employment__is_covered_by_mvohwr:
+          - true
