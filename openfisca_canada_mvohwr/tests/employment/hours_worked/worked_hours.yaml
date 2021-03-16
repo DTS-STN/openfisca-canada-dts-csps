@@ -1,0 +1,24 @@
+---
+- name: "Employee with mixed employment possibilities"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employee_has_worked_no_hours:
+        hours_worked__weekly__bus_operator: 0
+        hours_worked__weekly__city_motor: 0
+        hours_worked__weekly__highway_motor: 0
+        hours_worked__weekly__non_motor_vehicle_operator: 0
+      employee_has_worked_some_hours:
+        hours_worked__weekly__bus_operator: 10
+        hours_worked__weekly__city_motor: 8
+        hours_worked__weekly__highway_motor: 16
+        hours_worked__weekly__non_motor_vehicle_operator: 12
+  output:
+    persons:
+      employee_has_worked_no_hours:
+        hours_worked__weekly__worked_hours:
+          - 0
+      employee_has_worked_some_hours:
+        hours_worked__weekly__worked_hours:
+          - 46
