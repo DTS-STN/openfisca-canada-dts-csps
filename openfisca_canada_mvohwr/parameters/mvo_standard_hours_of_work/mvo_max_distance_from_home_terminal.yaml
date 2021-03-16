@@ -1,0 +1,6 @@
+description: Maximum distance that a driver can travel from home terminal to be labeled as CMVO
+metadata:
+  unit: double
+values:
+  1973-01-01:
+    value: 10.0
