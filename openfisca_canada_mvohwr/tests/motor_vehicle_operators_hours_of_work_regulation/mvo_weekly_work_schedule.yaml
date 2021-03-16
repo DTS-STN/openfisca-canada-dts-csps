@@ -1,0 +1,69 @@
+---
+- name: "Employee weekly work schedule - bus only"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employee_worked_as_a_bus_operator_only:
+        weekly_work_schedule__total_hours_bus_operator: 40
+  output:
+    persons:
+      employee_worked_as_a_bus_operator_only:
+        work_category__is_bus_operator_only:
+          - true
+
+- name: "Employee weekly work schedule - highway only"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+       employee_worked_as_a_highway_operator_only:
+        weekly_work_schedule__total_hours_highway_operator: 40
+  output:
+    persons:
+       employee_worked_as_a_highway_operator_only:
+        work_category__is_highway_operator_only:
+         - true
+  
+- name: "Employee weekly work schedule - city only"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employee_worked_as_a_city_operator_only:
+        weekly_work_schedule__total_hours_city_operator: 40
+  output:
+    persons:
+      employee_worked_as_a_city_operator_only:
+        work_category__is_city_operator_only:
+          - true
+  
+- name: "Employee weekly work schedule - other only"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+       employee_worked_as_a_other_only:
+        weekly_work_schedule__total_hours_other: 40
+  output:
+    persons:
+     employee_worked_as_a_other_only:
+        work_category__is_other_only:
+          - true
+
+- name: "Employee weekly work schedule - multiple types"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employee_worked_as_a_bus_and_highway_operator:
+        weekly_work_schedule__total_hours_bus_operator: 20
+        weekly_work_schedule__total_hours_highway_operator: 20
+  output:
+    persons:
+      employee_worked_as_a_bus_and_highway_operator:
+        work_category__is_bus_operator_only:
+          - false
+        work_category__is_highway_operator_only:
+          - false
+  
