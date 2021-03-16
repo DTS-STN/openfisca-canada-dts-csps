@@ -1,26 +1,26 @@
 ---
-- name: "Demo Test Case"
+- name: "Highway operator Standard weekly hours"
   period: 2020-08-25
   absolute_error_margin: 0
   input:
     persons:
-      quick_demo_test_case:
+      highway_operator_only_case:
         work_category__is_highway_operator_only: true
         work_category__is_city_operator_only: false
         standard_hours__has_autherized_exemption: false
         weekly_work_schedule__has_holiday_days_in_period: false
   output:
     persons:
-      quick_demo_test_case:
+      highway_operator_only_case:
         standard_hours__weekly:
           - 60
 
-- name: "Demo Test Case - auth true"
+- name: "Highway Standard weekly hours with exemption"
   period: 2020-08-25
   absolute_error_margin: 0
   input:
     persons:
-      quick_demo_test_case:
+      highway_operator_has_exemption_case:
         work_category__is_highway_operator_only: true
         work_category__is_city_operator_only: false
         standard_hours__has_autherized_exemption: true
@@ -28,29 +28,29 @@
         standard_hours__weekly_alternative: 70
   output:
     persons:
-      quick_demo_test_case:
+      highway_operator_has_exemption_case:
         standard_hours__weekly:
           - 70
 
-- name: "Demo Test Case - auth exemption"
+- name: "standard alternative weekly hours - auth exemption"
   period: 2020-08-25
   absolute_error_margin: 0
   input:
     persons:
-      quick_demo_test_case:
+      standard_alternative_weekly_hours:
         standard_hours__weekly_alternative: 5
   output:
     persons:
-      quick_demo_test_case:
+      standard_alternative_weekly_hours:
         standard_hours__has_autherized_exemption:
           - true
 
-- name: "Bus operator - standard weekly hours"
+- name: "Bus operator - CLC standard weekly hours"
   period: 2020-08-25
   absolute_error_margin: 0
   input: 
     persons:
-      standard_bus_operator_hours:
+      standard_bus_operator_weekly_hours_only:
         work_category__is_bus_operator_only: true
         work_category__is_city_operator_only: false
         work_category__is_highway_operator_only: false
@@ -58,16 +58,16 @@
         weekly_work_schedule__has_holiday_days_in_period: false
   output:
     persons:
-      standard_bus_operator_hours:
+      standard_bus_operator_weekly_hours_only:
         standard_hours__weekly:
           - 40
 
-- name: "Bus operator - standard weekly hours with holiday"
+- name: "Bus operator - standard weekly hours with 1 holiday in week"
   period: 2020-08-25
   absolute_error_margin: 0
   input: 
     persons:
-      standard_bus_operator_hours:
+      standard_bus_operator_weekly_hours_with_one_holiday:
         work_category__is_bus_operator_only: true
         work_category__is_city_operator_only: false
         work_category__is_highway_operator_only: false
@@ -75,16 +75,16 @@
         weekly_work_schedule__total_holiday_days_in_period: 1
   output:
     persons:
-      standard_bus_operator_hours:
+      standard_bus_operator_weekly_hours_with_one_holiday:
         standard_hours__weekly:
-          - 40
+          - 32
 
-- name: "Other - standard weekly hours"
+- name: "Other - not bus, cmvo or hmvo - standard weekly hours"
   period: 2020-08-25
   absolute_error_margin: 0
   input: 
     persons:
-      standard_bus_operator_hours:
+      standard_other_operator_weekly_hours:
         work_category__is_bus_operator_only: false
         work_category__is_city_operator_only: false
         work_category__is_highway_operator_only: false
@@ -92,7 +92,7 @@
         weekly_work_schedule__has_holiday_days_in_period: false
   output:
     persons:
-      standard_bus_operator_hours:
+      standard_other_operator_weekly_hours:
         standard_hours__weekly:
           - 40
 
