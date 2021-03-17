@@ -1,0 +1,22 @@
+---
+- name: "Employee with mixed employment possibilities"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employee_has_worked_no_hours:
+        summed_hours__clc_worked_hours: 0
+        weekly_work_schedule__total_hours_city_operator: 0
+        weekly_work_schedule__total_hours_highway_operator: 0
+      employee_has_worked_some_hours:
+        summed_hours__clc_worked_hours: 10
+        weekly_work_schedule__total_hours_city_operator: 14
+        weekly_work_schedule__total_hours_highway_operator: 22
+  output:
+    persons:
+      employee_has_worked_no_hours:
+        summed_hours__clc_hmvo_cmvo_worked_hours:
+          - 0
+      employee_has_worked_some_hours:
+        summed_hours__clc_hmvo_cmvo_worked_hours:
+          - 46
