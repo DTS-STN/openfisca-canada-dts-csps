@@ -1,0 +1,93 @@
+---
+- name: "Motor vehicle operator"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      fails_due_to_rails:
+        mvo__vehicle_is_designed_for_rails: true
+      fails_due_to_muscles:
+        mvo__vehicle_is_powered_by_muscles: true
+      fails_due_to_non_employee:
+        mvo__vehicle_is_operated_by_employee: false
+      operator:
+        mvo__vehicle_is_designed_for_rails: false
+        mvo__vehicle_is_powered_by_muscles: false
+        mvo__vehicle_is_operated_by_employee: true
+  output:
+    persons:
+      fails_due_to_rails:
+        mvo__is_motor_vehicle_operator:
+          - false
+      fails_due_to_muscles:
+        mvo__is_motor_vehicle_operator:
+          - false
+      fails_due_to_non_employee:
+        mvo__is_motor_vehicle_operator:
+          - false
+      operator:
+        mvo__is_motor_vehicle_operator:
+          - true
+
+- name: "Separate CMVO Classification"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      has_collective_agreement:
+        mvo__has_collective_cmvo_agreement: true
+      has_prevailing_industry_practice:
+        mvo__is_cmvo_under_prevailing_industry_practice: true
+      no_classification:
+        mvo__is_cmvo_under_prevailing_industry_practice: false
+        mvo__has_collective_cmvo_agreement: false
+  output:
+    persons:
+      has_collective_agreement:
+        mvo__is_classified_as_cmvo:
+          - true
+      has_prevailing_industry_practice:
+        mvo__is_classified_as_cmvo:
+          - true
+      no_classification:
+        mvo__is_classified_as_cmvo:
+          - false
+      
+- name: "Operates close to home terminal"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      too_far:
+        mvo__distance_from_home_terminal: 10.1
+      zero_case:
+        mvo__distance_from_home_terminal: 0
+      exact_threshold:
+        mvo__distance_from_home_terminal: 10
+      below_threshold:
+        mvo__distance_from_home_terminal: 9.99
+      underflow_defaults_to_threshold:
+        mvo__distance_from_home_terminal: 10.0000001
+      underflow_stays_above_threshold:
+        mvo__distance_from_home_terminal: 10.000001
+  output:
+    persons:
+      too_far:
+        mvo__operates_close_to_home_terminal:
+          - false
+      zero_case:
+        mvo__operates_close_to_home_terminal:
+          - true
+      exact_threshold:
+        mvo__operates_close_to_home_terminal:
+          - true
+      below_threshold:
+        mvo__operates_close_to_home_terminal:
+          - true
+      underflow_defaults_to_threshold:
+        mvo__operates_close_to_home_terminal:
+          - true
+      underflow_stays_above_threshold:
+        mvo__operates_close_to_home_terminal:
+          - false
+      
