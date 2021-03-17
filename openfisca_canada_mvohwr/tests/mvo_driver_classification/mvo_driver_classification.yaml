@@ -1,0 +1,131 @@
+---
+- name: "Employee is classified as HMVO"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employed_has_hmvo:
+        mvo__is_motor_vehicle_operator: true
+        mvo__is_bus_operator: false
+        mvo__is_cmvo: false
+      employed_not_has_hmvo - bus:
+        mvo__is_motor_vehicle_operator: true
+        mvo__is_bus_operator: true
+        mvo__is_cmvo: false
+      employed_not_has_hmvo - cmvo:
+        mvo__is_motor_vehicle_operator: true
+        mvo__is_bus_operator: false
+        mvo__is_cmvo: true
+      employed_not_has_mvo - other:
+        mvo__is_motor_vehicle_operator: false
+  output:
+    persons:
+      employed_has_hmvo:
+        mvo__is_hmvo:
+          - true
+      employed_not_has_hmvo - bus:
+        mvo__is_hmvo:
+          - false
+      employed_not_has_hmvo - cmvo:
+        mvo__is_hmvo:
+          - false
+      employed_not_has_mvo - other:
+        mvo__is_hmvo:
+          - false
+      
+- name: "Employee is classified as Bus Operator"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employed_has_bus_operator:
+        mvo__is_motor_vehicle_operator: true
+        mvo__is_bus_operator: true
+      employed_not_has_bus - not MVO:
+        mvo__is_motor_vehicle_operator: false
+  output:
+    persons:
+      employed_has_bus_operator:
+        mvo__is_bus_operator:
+          - true
+      employed_not_has_bus - not MVO:
+        mvo__is_bus_operator:
+          - false
+      
+- name: "Employee is classified as CMVO"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      employed_as_cmvo_due_to_classification:
+        mvo__is_motor_vehicle_operator: true
+        mvo__is_bus_operator: false
+        mvo__is_classified_as_cmvo: true
+        mvo__operates_close_to_home_terminal: false
+      employed_as_cmvo_due_to_home_terminal:
+        mvo__is_motor_vehicle_operator: true
+        mvo__is_bus_operator: false
+        mvo__is_classified_as_cmvo: false
+        mvo__operates_close_to_home_terminal: true
+      employed_as_cmvo_due_to_home_terminal_and_classification:
+        mvo__is_motor_vehicle_operator: true
+        mvo__is_bus_operator: false
+        mvo__is_classified_as_cmvo: true
+        mvo__operates_close_to_home_terminal: true
+      not_employed_as_cmvo_because_bus:
+        mvo__is_motor_vehicle_operator: true
+        mvo__is_bus_operator: true
+      not_employed_as_cmvo_no_agreement_and_too_far:
+        mvo__is_motor_vehicle_operator: true
+        mvo__is_bus_operator: false
+        mvo__is_classified_as_cmvo: false
+        mvo__operates_close_to_home_terminal: false
+      
+  output:
+    persons:
+      employed_as_cmvo_due_to_classification:
+        mvo__is_cmvo:
+          - true
+      employed_as_cmvo_due_to_home_terminal:
+        mvo__is_cmvo:
+          - true
+      employed_as_cmvo_due_to_home_terminal_and_classification:
+        mvo__is_cmvo:
+          - true
+      not_employed_as_cmvo_because_bus:
+        mvo__is_cmvo:
+          - false
+      not_employed_as_cmvo_no_agreement_and_too_far:
+        mvo__is_cmvo:
+          - false
+
+- name: "Employee is classified as other"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      bus_operator:
+        mvo__is_bus_operator: true
+      cmvo:
+        mvo__is_cmvo: true
+      hmvo:
+        mvo__is_hmvo: true
+      other:
+        mvo__is_bus_operator: false
+        mvo__is_cmvo: false
+        mvo__is_hmvo: false
+
+  output:
+    persons:
+      bus_operator:
+        mvo__is_other:
+          - false
+      cmvo:
+        mvo__is_other:
+          - false
+      hmvo:
+        mvo__is_other:
+          - false
+      other:
+        mvo__is_other:
+          - true
