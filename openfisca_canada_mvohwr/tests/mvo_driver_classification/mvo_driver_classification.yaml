@@ -40,15 +40,21 @@
     persons:
       employed_has_bus_operator:
         mvo__is_motor_vehicle_operator: true
-        mvo__is_bus_operator: true
+        mvo__operates_a_bus: true
       employed_not_has_bus - not MVO:
         mvo__is_motor_vehicle_operator: false
+      mvo_but_no_bus:
+        mvo__is_motor_vehicle_operator: true
+        mvo__operates_a_bus: false
   output:
     persons:
       employed_has_bus_operator:
         mvo__is_bus_operator:
           - true
       employed_not_has_bus - not MVO:
+        mvo__is_bus_operator:
+          - false
+      mvo_but_no_bus:
         mvo__is_bus_operator:
           - false
       
