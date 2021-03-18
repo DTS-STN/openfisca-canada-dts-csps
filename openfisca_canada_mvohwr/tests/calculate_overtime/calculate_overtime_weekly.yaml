@@ -1,0 +1,60 @@
+---
+- name: "Calculate weekly clc overtime hours"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      calculate_weekly_clc_overtime_hours:
+        summed_hours__clc_cmvo_worked_hours: 60
+        standard_hours__weekly_clc: 40
+      calculate_weekly_clc_no_overtime_hours:
+        summed_hours__clc_cmvo_worked_hours: 30
+        standard_hours__weekly_clc: 40
+  output:
+    persons:
+      calculate_weekly_clc_overtime_hours:
+        calculate_overtime_weekly__clc_overtime_worked_hours:
+          - 20
+      calculate_weekly_clc_no_overtime_hours:
+        calculate_overtime_weekly__clc_overtime_worked_hours:
+          - 0
+
+- name: "Calculate weekly cmvo overtime hours"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      calculate_weekly_cmvo_overtime_hours:
+        summed_hours__clc_cmvo_worked_hours: 60
+        standard_hours__weekly_cmvo: 45
+      calculate_weekly_cmvo_no_overtime_hours:
+        summed_hours__clc_cmvo_worked_hours: 30
+        standard_hours__weekly_cmvo: 45
+  output:
+    persons:
+      calculate_weekly_cmvo_overtime_hours:
+        calculate_overtime_weekly__cmvo_overtime_worked_hours:
+          - 15
+      calculate_weekly_cmvo_no_overtime_hours:
+        calculate_overtime_weekly__cmvo_overtime_worked_hours:
+          - 0
+
+- name: "Calculate weekly hmvo overtime hours"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      calculate_weekly_hmvo_overtime_hours:
+        summed_hours__clc_hmvo_cmvo_worked_hours: 70
+        standard_hours__weekly_hmvo: 60
+      calculate_weekly_cmvo_no_overtime_hours:
+        summed_hours__clc_hmvo_cmvo_worked_hours: 30
+        standard_hours__weekly_hmvo: 60
+  output:
+    persons:
+      calculate_weekly_hmvo_overtime_hours:
+        calculate_overtime_weekly__hmvo_overtime_worked_hours:
+          - 10
+      calculate_weekly_cmvo_no_overtime_hours:
+        calculate_overtime_weekly__hmvo_overtime_worked_hours:
+          - 0
