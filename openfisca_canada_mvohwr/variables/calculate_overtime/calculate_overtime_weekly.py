@@ -25,8 +25,6 @@ class calculate_overtime_weekly__overtime_worked_hours(Variable):
         persons("calculate_overtime_weekly__clc_overtime_worked_hours",period)
       )
 
-      
-
 class calculate_overtime_weekly__clc_overtime_worked_hours(Variable):
     value_type = float
     entity = Person

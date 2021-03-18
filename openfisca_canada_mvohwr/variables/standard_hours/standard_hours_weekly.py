@@ -60,6 +60,7 @@ class standard_hours__weekly_hmvo(Variable):
                 ]
             )
 
+<<<<<<< HEAD
 class standard_hours__daily(Variable):
     value_type = float
     entity = Person
@@ -71,6 +72,9 @@ class standard_hours__daily(Variable):
 
 
 class standard_hours__has_authorized_exemption(Variable):
+=======
+class standard_hours__has_autherized_exemption(Variable):
+>>>>>>> main
     value_type = bool
     entity = Person
     label = u"HMVO has authorized exemption to deviate from standard weekly hours"
@@ -85,13 +89,6 @@ class standard_hours__weekly_alternative(Variable):
     value_type = float
     entity = Person
     label = u"Is weekly alternative hours applicable to HMVO only"
-    definition_period = DAY
-    reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#h-604501"
-
-class standard_hours__daily_alternative(Variable):
-    value_type = float
-    entity = Person
-    label = u"Is daily alternative hours applicable to HMVO only in case of a holiday reduction of hours"
     definition_period = DAY
     reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#h-604501"
 
