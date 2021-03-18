@@ -10,7 +10,7 @@ build-run-dev-local:
 	openfisca serve --port 5000 --country-package openfisca_canada_mvohwr
 
 test:
-	docker exec openfisca_dev openfisca test -c openfisca_canada_mvohwr openfisca_canada_mvohwr/tests
+	docker exec openfisca_dev_mvo openfisca test -c openfisca_canada_mvohwr openfisca_canada_mvohwr/tests
 
 test-local:
 	pip install .
