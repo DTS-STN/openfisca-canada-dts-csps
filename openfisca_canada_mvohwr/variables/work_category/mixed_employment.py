@@ -1,14 +1,35 @@
 from openfisca_core.model_api import *
 from openfisca_canada_mvohwr.entities import Person
 
-class work_category__is_majority_highway_operator(Variable):
-    value_type = bool
-    entity = Person
-    label = u"Placeholder"
-    definition_period = DAY
-    default_value=False
-    reference = u"TODO"
-    def formula(persons, period, parameters):
-        return (persons("weekly_work_schedule__total_hours_highway_operator",period) >= persons("weekly_work_schedule__total_hours_bus_operator",period) *\
-          persons("weekly_work_schedule__total_hours_highway_operator",period) >= persons("weekly_work_schedule__total_hours_city_operator",period) *\
-          persons("weekly_work_schedule__total_hours_highway_operator",period) >= persons("weekly_work_schedule__total_hours_other",period))
+class WorkCategory(Enum):
+  CMVO = u"City motor vehicle operator"
+  HMVO = u"Highway motor vehicle operator"
+  OTHER = u"Any other type of motor vehicle operator (bus operator, shunt driver, etc)"
+
+class work_category_majority_type(Variable):
+  value_type = Enum
+  possible_values = WorkCategory
+  entity = Person
+  label = u"Placeholder"
+  definition_period = DAY
+  default_value=WorkCategory.OTHER
+  reference = u"TODO"
+
+  def formula(persons, period, parameters):
+      weekly_highway_hours = persons("weekly_work_schedule__total_hours_highway_operator",period)
+      weekly_city_hours = persons("weekly_work_schedule__total_hours_city_operator",period)
+      weekly_clc_hours = persons("weekly_work_schedule__total_hours_bus_operator",period) + persons("weekly_work_schedule__total_hours_other",period)
+
+      return select(
+        [
+          (weekly_highway_hours > weekly_city_hours) * (weekly_highway_hours > weekly_clc_hours),
+          (weekly_city_hours > weekly_highway_hours) * (weekly_city_hours > weekly_clc_hours),
+          (weekly_clc_hours > weekly_highway_hours) * (weekly_clc_hours > weekly_city_hours)
+        ],
+        [
+          WorkCategory.HMVO,
+          WorkCategory.CMVO,
+          WorkCategory.OTHER,
+        ],
+        WorkCategory.OTHER
+      )
