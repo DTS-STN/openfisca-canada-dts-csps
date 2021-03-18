@@ -7,7 +7,7 @@
       highway_operator_only_case:
         work_category__is_highway_operator_only: true
         work_category__is_city_operator_only: false
-        standard_hours__has_autherized_exemption: false
+        standard_hours__has_authorized_exemption: false
   output:
     persons:
       highway_operator_only_case:
@@ -22,7 +22,7 @@
       highway_operator_has_exemption_case:
         work_category__is_highway_operator_only: true
         work_category__is_city_operator_only: false
-        standard_hours__has_autherized_exemption: true
+        standard_hours__has_authorized_exemption: true
         standard_hours__weekly_alternative: 70
   output:
     persons:
@@ -40,7 +40,7 @@
   output:
     persons:
       standard_alternative_weekly_hours:
-        standard_hours__has_autherized_exemption:
+        standard_hours__has_authorized_exemption:
           - true
 
 - name: "CLC - standard weekly hours"
@@ -255,7 +255,7 @@
         work_category__is_city_operator_only: true
         work_category__is_highway_operator_only: false
         work_category__is_other_only: false
-        standard_hours__has_autherized_exemption: false
+        standard_hours__has_authorized_exemption: false
         standard_hours__weekly_alternative: 100
   output:
     persons:
@@ -289,7 +289,7 @@
         work_category__is_city_operator_only: false
         work_category__is_highway_operator_only: true
         work_category__is_other_only: false
-        standard_hours__has_autherized_exemption: true
+        standard_hours__has_authorized_exemption: true
         standard_hours__weekly_alternative: 65
   output:
     persons:
@@ -307,7 +307,7 @@
         work_category__is_city_operator_only: false
         work_category__is_highway_operator_only: true
         work_category__is_other_only: false
-        standard_hours__has_autherized_exemption: false
+        standard_hours__has_authorized_exemption: false
         standard_hours__weekly_alternative: 100
   output:
     persons:
