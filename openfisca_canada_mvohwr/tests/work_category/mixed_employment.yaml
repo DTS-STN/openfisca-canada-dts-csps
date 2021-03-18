@@ -1,0 +1,32 @@
+---
+- name: "Mixed employment - work category majority type"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      highway_majority_hours:
+        weekly_work_schedule__total_hours_highway_operator: 20
+        weekly_work_schedule__total_hours_city_operator: 10
+        weekly_work_schedule__total_hours_bus_operator: 5
+        weekly_work_schedule__total_hours_other: 4
+      city_majority_hours:
+        weekly_work_schedule__total_hours_highway_operator: 10
+        weekly_work_schedule__total_hours_city_operator: 20
+        weekly_work_schedule__total_hours_bus_operator: 5
+        weekly_work_schedule__total_hours_other: 4
+      clc_majority_hours:
+        weekly_work_schedule__total_hours_highway_operator: 15
+        weekly_work_schedule__total_hours_city_operator: 10
+        weekly_work_schedule__total_hours_bus_operator: 8
+        weekly_work_schedule__total_hours_other: 9
+  output:
+    persons:
+      highway_majority_hours:
+        work_category_majority_type:
+          - 1
+      city_majority_hours:
+        work_category_majority_type:
+          - 0
+      clc_majority_hours:
+        work_category_majority_type:
+          - 2
