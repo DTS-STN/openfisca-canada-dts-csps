@@ -5,9 +5,9 @@ from openfisca_canada_mvohwr.entities import Person
 class standard_hours__weekly_clc(Variable):
     value_type = float
     entity = Person
-    label = u"Placeholder"
+    label = u"Is weekly CLC (bus + other) taking account of holidays in week if any"
     definition_period = DAY
-    reference = u"TODO"
+    reference = u"https://laws-lois.justice.gc.ca/eng/acts/L-2/page-36.html#h-342197"
     
     def formula(persons, period, parameters):
         clc_weekly_hours = parameters(period).clc_standard_hours_of_work.weekly_clc_standard_hours_of_work
@@ -21,9 +21,9 @@ class standard_hours__weekly_clc(Variable):
 class standard_hours__weekly_cmvo(Variable):
     value_type = float
     entity = Person
-    label = u"Placeholder"
+    label = u"Is weekly hours for CMVO taking account of holidays if any in week"
     definition_period = DAY
-    reference = u"TODO"
+    reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#docCont"
 
     def formula(persons, period, parameters):
         cmvo_weekly_hours = parameters(period).mvo_standard_hours_of_work.cmvo_weekly_mvo_standard_hours_of_work
@@ -38,9 +38,9 @@ class standard_hours__weekly_cmvo(Variable):
 class standard_hours__weekly_hmvo(Variable):
     value_type = float
     entity = Person
-    label = u"Placeholder"
+    label = u"Is weekly hours for HMVO taking account of exemption and holidays"
     definition_period = DAY
-    reference = u"TODO"
+    reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#docCont"
 
     def formula(persons, period, parameters):
         hmvo_weekly_hours = parameters(period).mvo_standard_hours_of_work.hmvo_weekly_mvo_hours_of_work
@@ -60,27 +60,13 @@ class standard_hours__weekly_hmvo(Variable):
                 ]
             )
 
-<<<<<<< HEAD
-class standard_hours__daily(Variable):
-    value_type = float
-    entity = Person
-    label = u"Placeholder"
-    definition_period = DAY
-    reference = u"TODO"
-    def formula(persons, period, parameters):
-        return persons("employment__does_transport_goods_or_passangers_by_motor_vehicle",period)
-
-
-class standard_hours__has_authorized_exemption(Variable):
-=======
 class standard_hours__has_autherized_exemption(Variable):
->>>>>>> main
     value_type = bool
     entity = Person
     label = u"HMVO has authorized exemption to deviate from standard weekly hours"
     definition_period = DAY
     default_value=False
-    reference = u"TODO"
+    reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#docCont"
     def formula(persons, period, parameters):
         return persons("standard_hours__weekly_alternative",period) > 0 &\
          persons("standard_hours__is_hmvo_weekly_mvo_hours_of_work", period)
