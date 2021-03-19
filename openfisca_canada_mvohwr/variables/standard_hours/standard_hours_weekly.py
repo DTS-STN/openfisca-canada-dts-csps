@@ -60,7 +60,7 @@ class standard_hours__weekly_hmvo(Variable):
                 ]
             )
 
-class standard_hours__has_autherized_exemption(Variable):
+class standard_hours__has_authorized_exemption(Variable):
     value_type = bool
     entity = Person
     label = u"HMVO has authorized exemption to deviate from standard weekly hours"
