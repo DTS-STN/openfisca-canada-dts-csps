@@ -30,3 +30,31 @@
       clc_majority_hours:
         work_category_majority_type:
           - 2
+
+- name: "Mixed employment - daily majority_city_operator"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      majority_city_operator:
+        daily_work_schedule__total_hours_city_operator: 45
+        daily_summed_hours__clc_worked_hours: 30
+  output:
+    persons:
+      majority_city_operator:
+        work_category__daily_is_majority_city_operator:
+          - true
+
+- name: "Mixed employment - daily majority_other_operator"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      majority_other_operator:
+        daily_work_schedule__total_hours_city_operator: 15
+        daily_summed_hours__clc_worked_hours: 40
+  output:
+    persons:
+      majority_other_operator:
+        work_category__daily_is_majority_city_operator:
+          - false

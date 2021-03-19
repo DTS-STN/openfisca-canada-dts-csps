@@ -1,0 +1,33 @@
+---
+- name: "summed hours - work category majority type"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      summed hours:
+        daily_work_schedule__total_hours_highway_operator: 5 
+        daily_work_schedule__total_hours_city_operator: 15
+        daily_work_schedule__total_hours_bus_operator: 20
+        daily_work_schedule__total_hours_other: 10    
+  output:
+    persons:
+      summed hours:
+        daily_summed_hours__clc_worked_hours:
+          - 30
+      
+- name: "summed hours - work category majority type"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      summed hours:
+        daily_work_schedule__total_hours_highway_operator: 5 
+        daily_work_schedule__total_hours_city_operator: 15
+        daily_work_schedule__total_hours_bus_operator: 20
+        daily_work_schedule__total_hours_other: 10    
+  output:
+    persons:
+      summed hours:
+        daily_summed_hours__non_highway_worked_hours:
+          - 45
+

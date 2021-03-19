@@ -60,16 +60,6 @@ class standard_hours__weekly_hmvo(Variable):
                 ]
             )
 
-class standard_hours__daily(Variable):
-    value_type = float
-    entity = Person
-    label = u"Placeholder"
-    definition_period = DAY
-    reference = u"TODO"
-    def formula(persons, period, parameters):
-        return persons("employment__does_transport_goods_or_passangers_by_motor_vehicle",period)
-
-
 class standard_hours__has_autherized_exemption(Variable):
     value_type = bool
     entity = Person
@@ -78,17 +68,11 @@ class standard_hours__has_autherized_exemption(Variable):
     default_value=False
     reference = u"TODO"
     def formula(persons, period, parameters):
-        return persons("standard_hours__weekly_alternative",period) > 0 &\
-         persons("standard_hours__is_hmvo_weekly_mvo_hours_of_work", period)
+         return ((persons("standard_hours__weekly_alternative",period) > 0) &\
+           (persons("standard_hours__is_hmvo_weekly_only", period) +\
+           persons("standard_hours__is_hmvo_daily_only", period)))
 
 class standard_hours__weekly_alternative(Variable):
-    value_type = float
-    entity = Person
-    label = u"Placeholder"
-    definition_period = DAY
-    reference = u"TODO"
-
-class standard_hours__daily_alternative(Variable):
     value_type = float
     entity = Person
     label = u"Placeholder"
@@ -115,7 +99,7 @@ class standard_hours__is_cmvo_weekly_mvo_standard_hours_of_work(Variable):
         return not_(persons("work_category__is_highway_operator_only",period)) &\
             (persons("work_category__is_city_operator_only",period))
 
-class standard_hours__is_hmvo_weekly_mvo_hours_of_work(Variable):
+class standard_hours__is_hmvo_weekly_only(Variable):
     value_type = bool
     entity = Person
     label = u"Placeholder"
@@ -123,3 +107,12 @@ class standard_hours__is_hmvo_weekly_mvo_hours_of_work(Variable):
     reference = u"TODO"
     def formula(persons, period, parameters):
         return persons("work_category__is_highway_operator_only",period) 
+
+class standard_hours__is_hmvo_daily_only(Variable):
+    value_type = bool
+    entity = Person
+    label = u"Placeholder"
+    definition_period = DAY
+    reference = u"TODO"
+    def formula(persons, period, parameters):
+        return persons("work_category__daily_is_highway_operator_only",period) 
