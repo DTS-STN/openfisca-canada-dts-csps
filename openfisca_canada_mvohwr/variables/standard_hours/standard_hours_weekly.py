@@ -68,8 +68,9 @@ class standard_hours__has_authorized_exemption(Variable):
     default_value=False
     reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#docCont"
     def formula(persons, period, parameters):
-        return persons("standard_hours__weekly_alternative",period) > 0 &\
-         persons("standard_hours__is_hmvo_weekly_mvo_hours_of_work", period)
+         return ((persons("standard_hours__weekly_alternative",period) > 0) &\
+           (persons("standard_hours__is_hmvo_weekly_only", period) +\
+           persons("standard_hours__is_hmvo_daily_only", period)))
 
 class standard_hours__weekly_alternative(Variable):
     value_type = float
@@ -98,11 +99,20 @@ class standard_hours__is_cmvo_weekly_mvo_standard_hours_of_work(Variable):
         return not_(persons("work_category__is_highway_operator_only",period)) &\
             (persons("work_category__is_city_operator_only",period))
 
-class standard_hours__is_hmvo_weekly_mvo_hours_of_work(Variable):
+class standard_hours__is_hmvo_weekly_only(Variable):
+    value_type = bool
+    entity = Person
+    label = u"Placeholder"
+    definition_period = DAY
+    reference = u"TODO"
+    def formula(persons, period, parameters):
+        return persons("work_category__is_highway_operator_only",period) 
+
+class standard_hours__is_hmvo_daily_only(Variable):
     value_type = bool
     entity = Person
     label = u"Is HMVO only with standard hours of work per week"
     definition_period = DAY
     reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#h-604501"
     def formula(persons, period, parameters):
-        return persons("work_category__is_highway_operator_only",period) 
+        return persons("work_category__daily_is_highway_operator_only",period) 

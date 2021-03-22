@@ -37,11 +37,30 @@
     persons:
       standard_alternative_weekly_hours:
         standard_hours__weekly_alternative: 5
+        standard_hours__is_hmvo_weekly_only: true
   output:
     persons:
       standard_alternative_weekly_hours:
         standard_hours__has_authorized_exemption:
           - true
+        
+
+- name: "standard alternative daily hours - auth exemption"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      standard_alternative_weekly_hours:
+        standard_hours__daily_alternative: 5
+        standard_hours__weekly_alternative: 5
+        standard_hours__is_hmvo_daily_only: true
+  output:
+    persons:
+      standard_alternative_weekly_hours:
+        standard_hours__has_authorized_exemption:
+          - true
+        standard_hours__daily_alternative:
+          - 5
 
 - name: "CLC - standard weekly hours"
   period: 2020-08-25

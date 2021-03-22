@@ -1,0 +1,154 @@
+---
+- name: "work category - bus only"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      highway_majority_hours:
+        weekly_work_schedule__total_hours_highway_operator: 0
+        weekly_work_schedule__total_hours_city_operator: 0
+        weekly_work_schedule__total_hours_bus_operator: 40
+        weekly_work_schedule__total_hours_other: 0
+     
+  output:
+    persons:
+      highway_majority_hours:
+        work_category__is_bus_operator_only:
+          - true
+        work_category__is_city_operator_only:
+          - false
+        work_category__is_other_only:
+          - false
+        work_category__is_highway_operator_only:
+          - false 
+
+- name: "work category - city only"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      highway_majority_hours:
+        weekly_work_schedule__total_hours_highway_operator: 0
+        weekly_work_schedule__total_hours_city_operator: 40
+        weekly_work_schedule__total_hours_bus_operator: 0
+        weekly_work_schedule__total_hours_other: 0
+     
+  output:
+    persons:
+      highway_majority_hours:
+        work_category__is_bus_operator_only:
+          - false
+        work_category__is_city_operator_only:
+          - true
+        work_category__is_other_only:
+          - false
+        work_category__is_highway_operator_only:
+          - false 
+
+- name: "work category - highway only"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      highway_majority_hours:
+        weekly_work_schedule__total_hours_highway_operator: 40
+        weekly_work_schedule__total_hours_city_operator: 0
+        weekly_work_schedule__total_hours_bus_operator: 0
+        weekly_work_schedule__total_hours_other: 0
+  output:
+    persons:
+      highway_majority_hours:
+        work_category__is_bus_operator_only:
+          - false
+        work_category__is_city_operator_only:
+          - false
+        work_category__is_other_only:
+          - false
+        work_category__is_highway_operator_only:
+          - true 
+
+- name: "work category - other only"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      highway_majority_hours:
+        weekly_work_schedule__total_hours_highway_operator: 0
+        weekly_work_schedule__total_hours_city_operator: 0
+        weekly_work_schedule__total_hours_bus_operator: 0
+        weekly_work_schedule__total_hours_other: 40
+  output:
+    persons:
+      highway_majority_hours:
+        work_category__is_bus_operator_only:
+          - false
+        work_category__is_city_operator_only:
+          - false
+        work_category__is_other_only:
+          - true
+        work_category__is_highway_operator_only:
+          - false 
+
+- name: "work category - daily Highway only - true"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      highway_majority_hours:
+        daily_work_schedule__total_hours_highway_operator: 40
+        daily_work_schedule__total_hours_bus_operator: 0
+        daily_work_schedule__total_hours_city_operator: 0
+        daily_work_schedule__total_hours_other: 0
+  output:
+    persons:
+      highway_majority_hours:
+        work_category__daily_is_highway_operator_only:
+          - true
+
+- name: "work category - daily Highway only - false 1"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      highway_majority_hours:
+        daily_work_schedule__total_hours_highway_operator: 0
+        daily_work_schedule__total_hours_bus_operator: 0
+        daily_work_schedule__total_hours_city_operator: 0
+        daily_work_schedule__total_hours_other: 40
+  output:
+    persons:
+      highway_majority_hours:
+        work_category__daily_is_highway_operator_only:
+          - false
+          
+- name: "work category - daily Highway only - false 2"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      highway_majority_hours:
+        daily_work_schedule__total_hours_highway_operator: 0
+        daily_work_schedule__total_hours_bus_operator: 0
+        daily_work_schedule__total_hours_city_operator: 40
+        daily_work_schedule__total_hours_other: 0
+  output:
+    persons:
+      highway_majority_hours:
+        work_category__daily_is_highway_operator_only:
+          - false
+
+- name: "work category - daily Highway only - false 2"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      highway_majority_hours:
+        daily_work_schedule__total_hours_highway_operator: 0
+        daily_work_schedule__total_hours_bus_operator: 40
+        daily_work_schedule__total_hours_city_operator: 0
+        daily_work_schedule__total_hours_other: 0
+  output:
+    persons:
+      highway_majority_hours:
+        work_category__daily_is_highway_operator_only:
+          - false

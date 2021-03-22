@@ -1,0 +1,127 @@
+---
+- name: "Calculate daily - City_Hours_and_holiday"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      City_Hours_holiday:
+        daily_summed_hours__non_highway_worked_hours: 12
+        standard_hours__daily: 9
+        daily_work_schedule__is_holiday: true
+  output:
+    persons:
+      City_Hours_holiday:
+        calculate_overtime_daily__overtime_worked_hours:
+          - 0
+
+- name: "Calculate daily - city_hours_and_majority_highway"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:        
+      city_hours_majority_highway:
+        daily_summed_hours__non_highway_worked_hours: 12
+        standard_hours__daily: 9
+        work_category__daily_is_majority_highway_operator: true
+  output:
+    persons:
+      city_hours_majority_highway:
+        calculate_overtime_daily__overtime_worked_hours:
+          - 0
+
+- name: "Calculate daily - highway_only_hours"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:        
+      highway_only_hours:
+        daily_summed_hours__non_highway_worked_hours: 0
+        standard_hours__daily: 0
+        work_category__daily_is_highway_operator_only: true
+  output:
+    persons:
+      highway_only_hours:
+        calculate_overtime_daily__overtime_worked_hours:
+          - 0
+
+- name: "Calculate daily - city_hours_with_ot"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:        
+      city_hours_with_ot:
+        daily_summed_hours__non_highway_worked_hours: 12
+        standard_hours__daily: 9  
+  output:
+    persons:
+      city_hours_with_ot:
+        calculate_overtime_daily__overtime_worked_hours:
+          - 3
+
+- name: "Calculate daily - city_hours_without_ot"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      city_hours_without_ot:
+        daily_summed_hours__non_highway_worked_hours: 7
+        standard_hours__daily: 9      
+  output:
+    persons:
+      city_hours_without_ot:
+        calculate_overtime_daily__overtime_worked_hours:
+          - 0
+
+- name: "Calculate daily - other_hours_with_ot"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      other_hours_with_ot:
+        daily_summed_hours__non_highway_worked_hours: 10
+        standard_hours__daily: 8 
+  output:
+    persons:
+      other_hours_with_ot:
+        calculate_overtime_daily__overtime_worked_hours:
+          - 2
+
+- name: "Calculate daily - other_hours_without_ot"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:      
+      other_hours_without_ot:
+        daily_summed_hours__non_highway_worked_hours: 7
+        standard_hours__daily: 8
+  output:
+    persons:
+      other_hours_without_ot:
+        calculate_overtime_daily__overtime_worked_hours:
+          - 0
+
+- name: "calculate_overtime_daily__non_highway_worked_hours"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      calculate_daily_clc_overtime_hours:
+        daily_summed_hours__non_highway_worked_hours: 60
+        standard_hours__daily: 40
+      calculate_daily_city_overtime_hours:
+        daily_summed_hours__non_highway_worked_hours: 60
+        standard_hours__daily: 45
+      calculate_daily_city_no_overtime_hours:
+        daily_summed_hours__non_highway_worked_hours: 30
+        standard_hours__daily: 40
+  output:
+    persons:
+      calculate_daily_clc_overtime_hours:
+        calculate_overtime_daily__non_highway_worked_hours:
+          - 20
+      calculate_daily_city_overtime_hours:
+        calculate_overtime_daily__non_highway_worked_hours:
+          - 15
+      calculate_daily_city_no_overtime_hours:
+        calculate_overtime_daily__non_highway_worked_hours:
+          - 0
