@@ -20,13 +20,3 @@ class standard_hours__daily(Variable):
                 parameters(period).clc_standard_hours_of_work.daily_clc_standard_hours_of_work
             )
 
-class standard_hours__daily_alternative(Variable):
-    value_type = float
-    entity = Person
-    label = u""
-    definition_period = DAY
-    reference = u"TODO"
-    # def formula(persons, period, parameters):
-    #     return where(True, parameters(period).mvo_standard_hours_of_work.hmvo_daily_holiday_reduction_hours,\
-    #         parameters(period).mvo_standard_hours_of_work.hmvo_daily_holiday_reduction_hours)
-  
