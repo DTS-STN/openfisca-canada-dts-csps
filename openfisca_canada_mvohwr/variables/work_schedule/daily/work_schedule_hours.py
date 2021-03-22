@@ -41,15 +41,3 @@ class daily_work_schedule__is_holiday(Variable):
     default_value=False
     reference = u"TODO"
     
-
-   
-class daily_work_schedule__has_non_highway_time(Variable):
-    value_type = bool
-    entity = Person
-    label = u"Placeholder"
-    definition_period = DAY
-    reference = u"TODO"
-    def formula(persons, period, parameters):
-        return (persons("daily_work_schedule__total_hours_bus_operator",period) > 0 +\
-          persons("daily_work_schedule__total_hours_city_operator",period) > 0 +\
-          persons("daily_work_schedule__total_hours_other",period) > 0 )
