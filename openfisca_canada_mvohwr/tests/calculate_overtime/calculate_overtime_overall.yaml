@@ -1,0 +1,28 @@
+---
+- name: "Calculate daily as better overtime"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      daily_ot_higher:
+        calculate_overtime_daily__overtime_worked_hours: 12
+        calculate_overtime_weekly__overtime_worked_hours: 9
+  output:
+    persons:
+      daily_ot_higher:
+        calculate_overtime__overtime_worked_hours:
+          - 12
+
+- name: "Calculate weekly as better overtime"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      weekly_ot_higher:
+        calculate_overtime_daily__overtime_worked_hours: 8
+        calculate_overtime_weekly__overtime_worked_hours: 14
+  output:
+    persons:
+      weekly_ot_higher:
+        calculate_overtime__overtime_worked_hours:
+          - 14
