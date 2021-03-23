@@ -12,4 +12,5 @@ class calculate_overtime__overtime_worked_hours(Variable):
       #take the better of daily vs weekly
       daily_ot = persons("calculate_overtime_daily__overtime_worked_hours",period)
       weekly_ot = persons("calculate_overtime_weekly__overtime_worked_hours",period)
-      return where(daily_ot > weekly_ot, daily_ot, weekly_ot)
+      sixty_hour_ot = persons("calculate_overtime_weekly__hmvo_overtime_worked_hours", period)
+      return max(daily_ot, weekly_ot, sixty_hour_ot)

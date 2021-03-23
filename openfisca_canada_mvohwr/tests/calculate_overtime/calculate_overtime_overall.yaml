@@ -7,6 +7,7 @@
       daily_ot_higher:
         calculate_overtime_daily__overtime_worked_hours: 12
         calculate_overtime_weekly__overtime_worked_hours: 9
+        calculate_overtime_weekly__hmvo_overtime_worked_hours: 11
   output:
     persons:
       daily_ot_higher:
@@ -21,8 +22,24 @@
       weekly_ot_higher:
         calculate_overtime_daily__overtime_worked_hours: 8
         calculate_overtime_weekly__overtime_worked_hours: 14
+        calculate_overtime_weekly__hmvo_overtime_worked_hours: 13
   output:
     persons:
       weekly_ot_higher:
         calculate_overtime__overtime_worked_hours:
           - 14
+
+- name: "Calculate weekly as better overtime"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      weekly_ot_higher:
+        calculate_overtime_daily__overtime_worked_hours: 8
+        calculate_overtime_weekly__overtime_worked_hours: 14
+        calculate_overtime_weekly__hmvo_overtime_worked_hours: 16
+  output:
+    persons:
+      weekly_ot_higher:
+        calculate_overtime__overtime_worked_hours:
+          - 16
