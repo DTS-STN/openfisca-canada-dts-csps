@@ -11,6 +11,7 @@
       highway_case:
         standard_hours__daily:
           - 0
+
 - name: "city - standard_hours__daily"
   period: 2020-08-25
   absolute_error_margin: 0
@@ -23,6 +24,7 @@
       highway_case:
         standard_hours__daily:
           - 9
+
 - name: "other - standard_hours__daily"
   period: 2020-08-25
   absolute_error_margin: 0
