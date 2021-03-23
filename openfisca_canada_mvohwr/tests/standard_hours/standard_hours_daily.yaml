@@ -6,30 +6,11 @@
     persons:
       highway_case:
         work_category__daily_is_majority_highway_operator: true
-        standard_hours__has_authorized_exemption: false
   output:
     persons:
       highway_case:
         standard_hours__daily:
           - 0
-
-- name: "Highway - standard_hours__daily - autherized_exemption"
-  period: 2020-08-25
-  absolute_error_margin: 0
-  input:
-    persons:
-      highway_case:
-        work_category__daily_is_highway_operator_only: true
-        work_category__daily_is_majority_highway_operator: true
-        standard_hours__daily_alternative: 10
-        standard_hours__weekly_alternative: 5
-  output:
-    persons:
-      highway_case:
-        standard_hours__daily:
-          - 10
-        standard_hours__has_authorized_exemption: 
-          - true
 - name: "city - standard_hours__daily"
   period: 2020-08-25
   absolute_error_margin: 0

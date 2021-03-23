@@ -1,5 +1,5 @@
 ---
-- name: "summed hours - work category majority type"
+- name: "summed hours - test clc_worked_hours"
   period: 2020-08-25
   absolute_error_margin: 0
   input:
@@ -15,7 +15,7 @@
         daily_summed_hours__clc_worked_hours:
           - 30
       
-- name: "summed hours - work category majority type"
+- name: "summed hours - test non_highway_worked_hours"
   period: 2020-08-25
   absolute_error_margin: 0
   input:

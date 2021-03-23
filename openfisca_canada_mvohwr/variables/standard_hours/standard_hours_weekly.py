@@ -69,8 +69,7 @@ class standard_hours__has_authorized_exemption(Variable):
     reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#docCont"
     def formula(persons, period, parameters):
          return ((persons("standard_hours__weekly_alternative",period) > 0) &\
-           (persons("standard_hours__is_hmvo_weekly_only", period) +\
-           persons("standard_hours__is_hmvo_daily_only", period)))
+           persons("standard_hours__is_hmvo_weekly_only", period))
 
 class standard_hours__weekly_alternative(Variable):
     value_type = float
@@ -78,6 +77,17 @@ class standard_hours__weekly_alternative(Variable):
     label = u"Is weekly alternative hours applicable to HMVO only"
     definition_period = DAY
     reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#h-604501"
+
+class standard_hours__daily_alternative(Variable):
+    value_type = float
+    entity = Person
+    label = u""
+    definition_period = DAY
+    reference = u"TODO"
+    # def formula(persons, period, parameters):
+    #     return where(True, parameters(period).mvo_standard_hours_of_work.hmvo_daily_holiday_reduction_hours,\
+    #         parameters(period).mvo_standard_hours_of_work.hmvo_daily_holiday_reduction_hours)
+  
 
 class standard_hours__is_weekly_clc_standard_hours_of_work(Variable):
     value_type = bool
@@ -104,15 +114,7 @@ class standard_hours__is_hmvo_weekly_only(Variable):
     entity = Person
     label = u"Placeholder"
     definition_period = DAY
-    reference = u"TODO"
+    reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#h-604501"
     def formula(persons, period, parameters):
         return persons("work_category__is_highway_operator_only",period) 
 
-class standard_hours__is_hmvo_daily_only(Variable):
-    value_type = bool
-    entity = Person
-    label = u"Is HMVO only with standard hours of work per week"
-    definition_period = DAY
-    reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#h-604501"
-    def formula(persons, period, parameters):
-        return persons("work_category__daily_is_highway_operator_only",period) 
