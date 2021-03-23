@@ -65,10 +65,10 @@ class work_category__is_other_only(Variable):
 class work_category__daily_is_highway_operator_only(Variable):
     value_type = bool
     entity = Person
-    label = u"Placeholder"
+    label = u"on a given day, has worked only highway hours"
     definition_period = ETERNITY
     default_value = False
-    reference = u"TODO"
+    reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#h-604501"
 
     def formula(persons, period, parameters):
         return (persons("daily_work_schedule__total_hours_highway_operator", period) > 0) * \
