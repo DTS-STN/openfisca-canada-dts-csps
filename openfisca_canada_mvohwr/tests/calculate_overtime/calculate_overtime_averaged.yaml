@@ -5,7 +5,7 @@
   input:
     persons:
       averaged_hours_no_ot:
-        calculate_overtime__total_clc_hours: 79
+        calculate_overtime__total_overtime_clc_hours: 0
         calculate_overtime__number_of_averaging_scheduled_clc_weeks: 2
   output:
     persons:
@@ -19,7 +19,7 @@
   input:
     persons:
       averaged_hours_with_ot:
-        calculate_overtime__total_clc_hours: 125
+        calculate_overtime__total_overtime_clc_hours: 15
         calculate_overtime__number_of_averaging_scheduled_clc_weeks: 3
   output:
     persons:
