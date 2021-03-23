@@ -50,7 +50,7 @@
           - 20
       calculate_weekly_clc_no_overtime_hours:
         calculate_overtime_weekly__clc_overtime_worked_hours:
-          - 0
+          - -10
 
 - name: "Calculate weekly cmvo overtime hours"
   period: 2020-08-25
@@ -70,7 +70,7 @@
           - 15
       calculate_weekly_cmvo_no_overtime_hours:
         calculate_overtime_weekly__cmvo_overtime_worked_hours:
-          - 0
+          - -15
 
 - name: "Calculate weekly hmvo overtime hours"
   period: 2020-08-25
@@ -90,4 +90,4 @@
           - 10
       calculate_weekly_cmvo_no_overtime_hours:
         calculate_overtime_weekly__hmvo_overtime_worked_hours:
-          - 0
+          - -30

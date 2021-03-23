@@ -19,11 +19,11 @@ class calculate_overtime_weekly__overtime_worked_hours(Variable):
                 work_category_majority_type == WorkCategory.HMVO
             ],
             [
-                persons("calculate_overtime_weekly__clc_overtime_worked_hours", period),
-                persons("calculate_overtime_weekly__cmvo_overtime_worked_hours", period),
-                persons("calculate_overtime_weekly__hmvo_overtime_worked_hours", period),
+                max_(0, persons("calculate_overtime_weekly__clc_overtime_worked_hours", period)),
+                max_(0, persons("calculate_overtime_weekly__cmvo_overtime_worked_hours", period)),
+                max_(0, persons("calculate_overtime_weekly__hmvo_overtime_worked_hours", period)),
             ],
-            persons("calculate_overtime_weekly__clc_overtime_worked_hours", period)
+            max_(0, persons("calculate_overtime_weekly__clc_overtime_worked_hours", period))
         )
 
 
@@ -36,8 +36,7 @@ class calculate_overtime_weekly__clc_overtime_worked_hours(Variable):
 
     def formula(persons, period, parameters):
         ot_hours = persons("summed_hours__clc_cmvo_worked_hours", period) - persons("standard_hours__weekly_clc", period)
-        return max_(0, ot_hours)
-
+        return ot_hours
 
 class calculate_overtime_weekly__cmvo_overtime_worked_hours(Variable):
     value_type = float
@@ -48,7 +47,7 @@ class calculate_overtime_weekly__cmvo_overtime_worked_hours(Variable):
 
     def formula(persons, period, parameters):
         ot_hours = persons("summed_hours__clc_cmvo_worked_hours", period) - persons("standard_hours__weekly_cmvo", period)
-        return max_(0, ot_hours)
+        return ot_hours
 
 
 class calculate_overtime_weekly__hmvo_overtime_worked_hours(Variable):
@@ -60,4 +59,4 @@ class calculate_overtime_weekly__hmvo_overtime_worked_hours(Variable):
 
     def formula(persons, period, parameters):
         ot_hours = persons("summed_hours__clc_hmvo_cmvo_worked_hours", period) - persons("standard_hours__weekly_hmvo", period)
-        return max_(0, ot_hours)
+        return ot_hours
