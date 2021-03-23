@@ -26,3 +26,17 @@
       averaged_hours_with_ot:
         calculate_overtime__averaged:
           - 5
+
+- name: "Calculate averaged ot with cmvo and hmvo"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      averaged_hours_with_cmvo_hmvo:
+        calculate_overtime__averaged: 8
+        calculate_overtime__total_overtime_cmvo_and_hmvo_hours: 5
+  output:
+    persons:
+      averaged_hours_with_cmvo_hmvo:
+        calculate_overtime__total_averaging_scheme:
+          - 13
