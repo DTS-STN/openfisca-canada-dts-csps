@@ -1,0 +1,28 @@
+---
+- name: "Calculate averaged ot - averaged no overtime"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      averaged_hours_no_ot:
+        calculate_overtime__total_clc_hours: 79
+        calculate_overtime__number_of_averaging_scheduled_clc_weeks: 2
+  output:
+    persons:
+      averaged_hours_no_ot:
+        calculate_overtime__averaged:
+          - 0
+
+- name: "Calculate averaged ot - averaged with overtime"
+  period: 2020-08-25
+  absolute_error_margin: 0
+  input:
+    persons:
+      averaged_hours_with_ot:
+        calculate_overtime__total_clc_hours: 125
+        calculate_overtime__number_of_averaging_scheduled_clc_weeks: 3
+  output:
+    persons:
+      averaged_hours_with_ot:
+        calculate_overtime__averaged:
+          - 5
