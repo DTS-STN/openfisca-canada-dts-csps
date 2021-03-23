@@ -5,9 +5,9 @@ from openfisca_canada_mvohwr.entities import Person
 class calculate_overtime_daily__overtime_worked_hours(Variable):
     value_type = float
     entity = Person
-    label = u"Placeholder"
+    label = u"Calculate daily overtime"
     definition_period = DAY
-    reference = u"TODO"
+    reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html"
 
     def formula(persons, period, parameters):
         condition = persons("daily_work_schedule__is_holiday", period) + \

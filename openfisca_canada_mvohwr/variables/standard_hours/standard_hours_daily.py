@@ -5,9 +5,9 @@ from openfisca_canada_mvohwr.entities import Person
 class standard_hours__daily(Variable):
     value_type = float
     entity = Person
-    label = u"Placeholder"
+    label = u"gets the standard hours based on the type of work done"
     definition_period = DAY
-    reference = u"TODO"
+    reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html"
 
     def formula(persons, period, parameters):
         return select(

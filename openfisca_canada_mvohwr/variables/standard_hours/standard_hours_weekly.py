@@ -110,7 +110,7 @@ class standard_hours__is_cmvo_weekly_mvo_standard_hours_of_work(Variable):
 class standard_hours__is_hmvo_weekly_only(Variable):
     value_type = bool
     entity = Person
-    label = u"Placeholder"
+    label = u"Is HMVO only (not CMVO) with standard hours of work per week"
     definition_period = DAY
     reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#h-604501"
 
