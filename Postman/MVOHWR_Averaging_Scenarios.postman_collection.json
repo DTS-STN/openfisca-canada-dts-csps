@@ -6,52 +6,248 @@
 	},
 	"item": [
 		{
-			"name": "Averaging Weekly calc",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"persons\": {\n        \"week 4\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 33\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 19\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week 5\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 39\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 19\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week 6\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 31\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 7\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 23\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week 7\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 22\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 27\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 28\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week 8\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 9\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 27\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 30\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week 9\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 11\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 16\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 20\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week 10\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 40\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 52\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week 11\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 10\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 30\n            },\n            \"weekly_work_schedule__total_holiday_days_in_period\": {\n                \"2020-09-25\": 1\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week 12\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 3\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 48\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 30\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week 13\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 23\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 10\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 21\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        }\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Averaging  - Scenario 1 -  No 60 rule for averaging weeks",
+			"item": [
+				{
+					"name": "Averaging Weekly calc",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "feef60de-8f9f-42e3-a4d2-44f9eb112a27",
+								"exec": [
+									"\t",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test('Verify week 4', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_4.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
+									"});",
+									"",
+									"pm.test('Verify week 5', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_5.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(1);",
+									"});",
+									"",
+									"pm.test('Verify week 6', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_6.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(9);",
+									"});",
+									"pm.test('Verify week 7', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_7.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(10);",
+									"});",
+									"pm.test('Verify week 8', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_8.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(-1);",
+									"});",
+									"pm.test('Verify week 9', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_9.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(-9);",
+									"});",
+									"pm.test('Verify week 10', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_10.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(12);",
+									"});",
+									"pm.test('Verify week 11', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_11.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(-2);",
+									"});",
+									"pm.test('Verify week 12', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_12.calculate_overtime__overtime_worked_hours.2020-09-25')).to.eql(12);",
+									"});",
+									"pm.test('Verify week 13', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_13.calculate_overtime__overtime_worked_hours.2020-09-25')).to.eql(0);",
+									"});",
+									"var cmvo_hmvo_total = ",
+									"    _.get(jsonData, 'persons.week_4.calculate_overtime__overtime_worked_hours.2020-09-25') + ",
+									"    _.get(jsonData, 'persons.week_5.calculate_overtime__overtime_worked_hours.2020-09-25') +",
+									"    _.get(jsonData, 'persons.week_6.calculate_overtime__overtime_worked_hours.2020-09-25') +",
+									"    _.get(jsonData, 'persons.week_12.calculate_overtime__overtime_worked_hours.2020-09-25')+",
+									"    _.get(jsonData, 'persons.week_13.calculate_overtime__overtime_worked_hours.2020-09-25')",
+									"",
+									"var clc_totals = ",
+									"    _.get(jsonData, 'persons.week_7.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25') + ",
+									"    _.get(jsonData, 'persons.week_8.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25') +",
+									"    _.get(jsonData, 'persons.week_9.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25') +",
+									"    _.get(jsonData, 'persons.week_10.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')+",
+									"    _.get(jsonData, 'persons.week_11.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')",
+									"",
+									"pm.globals.set(\"cmvo_hmvo_total\", cmvo_hmvo_total)",
+									"pm.globals.set(\"clc_totals\", clc_totals)",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persons\": {\n        \"week_4\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 33\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 19\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_5\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 39\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 22\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_6\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 31\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 7\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 23\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_7\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 22\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 27\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 28\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_8\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 9\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 27\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 30\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_9\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 11\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 16\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 20\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_10\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 40\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 52\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_11\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 10\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 30\n            },\n            \"weekly_work_schedule__total_holiday_days_in_period\": {\n                \"2020-09-25\": 1\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_12\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 3\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 48\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 30\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_13\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 23\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 10\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 21\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{of_uri}}",
+							"host": [
+								"{{of_uri}}"
+							]
+						},
+						"description": "Step 1 - Run the weekly for each non zero week in the averaging scheme"
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{of_uri}}",
-					"host": [
-						"{{of_uri}}"
-					]
-				},
-				"description": "Step 1 - Run the weekly for each non zero week in the averaging scheme"
-			},
-			"response": []
+				{
+					"name": "TOTAL OT - Averaging",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persons\": {\n        \"Calculate Averaging OT\": {\n            \"calculate_overtime__total_overtime_clc_hours\": {\n                \"2020-09-25\": {{clc_totals}}\n            },\n            \"calculate_overtime__number_of_averaging_scheduled_clc_weeks\": {\n                \"2020-09-25\": 5\n            },\n            \"calculate_overtime__total_overtime_cmvo_and_hmvo_hours\": {\n                \"2020-09-25\": {{cmvo_hmvo_total}}\n            },\n            \"calculate_overtime__total_averaging_scheme\": {\n                \"2020-09-25\": null\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{of_uri}}",
+							"host": [
+								"{{of_uri}}"
+							]
+						},
+						"description": "Step 1 - Run the weekly for each non zero week in the averaging scheme"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "TOTAL OT - Averaging",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"persons\": {\n        \"Calculate Averaging OT\": {\n            \"calculate_overtime__total_overtime_clc_hours\": {\n                \"2020-09-25\": 22\n            },\n            \"calculate_overtime__number_of_averaging_scheduled_clc_weeks\": {\n                \"2020-09-25\": 5\n            },\n            \"calculate_overtime__total_overtime_cmvo_and_hmvo_hours\": {\n                \"2020-09-25\": 34\n            },\n            \"calculate_overtime__total_clc_hours\": {\n                \"2020-09-25\": 192\n            },\n            \"calculate_overtime__total_averaging_scheme\": {\n                \"2020-09-25\": null\n            }\n        }\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Averaging  - Scenario 1 -  with 60 rule for averaging weeks Copy",
+			"item": [
+				{
+					"name": "Averaging Weekly calc",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3989e55-cdef-4d29-9903-6e26acac69b7",
+								"exec": [
+									"\t",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test('Verify week 4', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_4.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
+									"});",
+									"",
+									"pm.test('Verify week 5', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_5.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(1);",
+									"});",
+									"",
+									"pm.test('Verify week 6', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_6.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(9);",
+									"});",
+									"pm.test('Verify week 7', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_7.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(10);",
+									"});",
+									"pm.test('Verify week 8', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_8.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(-1);",
+									"});",
+									"pm.test('Verify week 9', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_9.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(-9);",
+									"});",
+									"pm.test('Verify week 10', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_10.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(12);",
+									"});",
+									"pm.test('Verify week 11', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_11.calculate_overtime_weekly__clc_overtime_worked_hours.2020-09-25')).to.eql(-2);",
+									"});",
+									"pm.test('Verify week 12', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_12.calculate_overtime__overtime_worked_hours.2020-09-25')).to.eql(12);",
+									"});",
+									"pm.test('Verify week 13', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.week_13.calculate_overtime__overtime_worked_hours.2020-09-25')).to.eql(0);",
+									"});",
+									"var cmvo_hmvo_total = ",
+									"    _.get(jsonData, 'persons.week_4.calculate_overtime__overtime_worked_hours.2020-09-25') + ",
+									"    _.get(jsonData, 'persons.week_5.calculate_overtime__overtime_worked_hours.2020-09-25') +",
+									"    _.get(jsonData, 'persons.week_6.calculate_overtime__overtime_worked_hours.2020-09-25') +",
+									"    _.get(jsonData, 'persons.week_12.calculate_overtime__overtime_worked_hours.2020-09-25')+",
+									"    _.get(jsonData, 'persons.week_13.calculate_overtime__overtime_worked_hours.2020-09-25')",
+									"",
+									"var clc_totals = ",
+									"    _.get(jsonData, 'persons.week_7.calculate_overtime__overtime_worked_hours.2020-09-25') + ",
+									"    _.get(jsonData, 'persons.week_8.calculate_overtime__overtime_worked_hours.2020-09-25') +",
+									"    _.get(jsonData, 'persons.week_9.calculate_overtime__overtime_worked_hours.2020-09-25') +",
+									"    _.get(jsonData, 'persons.week_10.calculate_overtime__overtime_worked_hours.2020-09-25')+",
+									"    _.get(jsonData, 'persons.week_11.calculate_overtime__overtime_worked_hours.2020-09-25')",
+									"",
+									"pm.globals.set(\"cmvo_hmvo_total\", cmvo_hmvo_total)",
+									"pm.globals.set(\"clc_totals\", clc_totals)",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persons\": {\n        \"week_4\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 33\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 19\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_5\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 39\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 22\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_6\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 31\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 7\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 23\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_7\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 22\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 27\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 28\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_8\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 9\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 27\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 30\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_9\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 11\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 16\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 20\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_10\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 40\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 52\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_11\": {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 10\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 30\n            },\n            \"weekly_work_schedule__total_holiday_days_in_period\": {\n                \"2020-09-25\": 1\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_12\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 3\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 48\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 30\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        },\n        \"week_13\": {\n            \"weekly_work_schedule__total_hours_city_operator\": {\n                \"2020-09-25\": 23\n            },\n            \"weekly_work_schedule__total_hours_highway_operator\": {\n                \"2020-09-25\": 10\n            },\n            \"weekly_work_schedule__total_hours_other\": {\n                \"2020-09-25\": 21\n            },\n            \"calculate_overtime__overtime_worked_hours\": {\n                \"2020-09-25\": null\n            },\n            \"work_category_majority_type\": {\n                \"2020-09-25\": null\n            },\n            \"calculate_overtime_weekly__clc_overtime_worked_hours\": {\n                \"2020-09-25\": null\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{of_uri}}",
+							"host": [
+								"{{of_uri}}"
+							]
+						},
+						"description": "Step 1 - Run the weekly for each non zero week in the averaging scheme"
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{of_uri}}",
-					"host": [
-						"{{of_uri}}"
-					]
-				},
-				"description": "Step 1 - Run the weekly for each non zero week in the averaging scheme"
-			},
-			"response": []
+				{
+					"name": "TOTAL OT - Averaging",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persons\": {\n        \"Calculate Averaging OT\": {\n            \"calculate_overtime__total_overtime_clc_hours\": {\n                \"2020-09-25\": {{clc_totals}}\n            },\n            \"calculate_overtime__number_of_averaging_scheduled_clc_weeks\": {\n                \"2020-09-25\": 5\n            },\n            \"calculate_overtime__total_overtime_cmvo_and_hmvo_hours\": {\n                \"2020-09-25\": {{cmvo_hmvo_total}}\n            },\n            \"calculate_overtime__total_averaging_scheme\": {\n                \"2020-09-25\": null\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{of_uri}}",
+							"host": [
+								"{{of_uri}}"
+							]
+						},
+						"description": "Step 1 - Run the weekly for each non zero week in the averaging scheme"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
