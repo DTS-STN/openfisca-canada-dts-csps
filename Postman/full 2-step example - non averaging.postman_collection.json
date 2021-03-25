@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ff46f931-e878-46a0-9411-2b6eb3a58790",
+		"_postman_id": "617f2b59-13c3-4f84-9b5c-35e718bc7d3c",
 		"name": "full 2-step example - non averaging",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "73177f42-d39a-49f3-a427-0bf1da90b09b",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -40,21 +39,47 @@
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
 									"",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')+ ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
 									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
 									"",
-									"pm.globals.set(\"weekly_total\", daily_total)",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
 									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
 									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
 									"",
-									"",
-									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)",
 									""
 								],
 								"type": "text/javascript"
@@ -66,7 +91,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 10},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -155,7 +180,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e529ff6a-0050-414e-9864-8d05409a88c5",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -172,7 +196,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 28},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 36},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -188,8 +212,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 2 - CMVO, OTHER and HMVO",
@@ -200,7 +223,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4a5b07db-3445-4def-90cc-6013f3d290ed",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -225,14 +247,48 @@
 									"pm.test('Verify saturday', function () {",
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')+ ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -243,7 +299,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -265,7 +321,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "77356703-f2e3-4fa0-aa42-56b242300fa7",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -282,7 +337,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 28},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 28},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -298,8 +353,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 3 - CMVO, OTHER and HMVO - weekly wins",
@@ -310,7 +364,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c0a5fb4b-487a-45b2-82ff-93fb33745483",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -336,14 +389,47 @@
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
 									"",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')+ ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -354,7 +440,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8}, \n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 2},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 2},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8}, \n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -376,7 +462,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1266d10e-e91f-4a0b-a00d-6795b6fe02b7",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -393,7 +478,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 7},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 36},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 18},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -409,8 +494,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 4 - CMVO, OTHER - weekly wins Copy",
@@ -421,7 +505,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f9b933e9-2b7d-4ac9-9fb4-e5efbbd54c80",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -447,14 +530,47 @@
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
 									"",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')+ ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)"
 								],
 								"type": "text/javascript"
 							}
@@ -465,7 +581,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 9},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -487,7 +603,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6e4b4fcb-5035-418a-8fd1-6cd4e5eb4e7a",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -504,7 +619,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 45},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -520,8 +635,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 5 - CMVO, HMVO, OTHER - 60 rule wins",
@@ -532,7 +646,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "09883af0-c60b-4674-9d87-24819d730fcd",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -554,13 +667,48 @@
 									"pm.test('Verify friday', function () {",
 									"  pm.expect(_.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"",
+									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)"
 								],
 								"type": "text/javascript"
 							}
@@ -571,7 +719,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 5},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 5},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 5},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 5},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -593,7 +741,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "066716f1-5434-416a-9e03-ee3dd5db6e27",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -610,7 +757,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 22},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 21},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 22},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -626,8 +773,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 6 - CMVO, HMVO, OTHER - 60 rule wins",
@@ -638,7 +784,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3c21e49b-a468-4b2e-9555-5198fea35573",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -663,14 +808,48 @@
 									"pm.test('Verify saturday', function () {",
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')+ ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"",
+									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)"
 								],
 								"type": "text/javascript"
 							}
@@ -681,7 +860,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 2},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 2},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 3},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 8},\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 1},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 1},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 3},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 2},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 2},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 3},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 1},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 1},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 3},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -703,7 +882,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "befbbfd8-d24f-4a7b-bdbf-60f737a4242d",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -720,7 +898,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 32},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 24},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -736,8 +914,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 7 - CMVO, HMVO, OTHER - daily wins",
@@ -748,7 +925,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d9741ec8-30e4-40a2-9cdf-cd9dfd4948e0",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -772,13 +948,47 @@
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
 									"",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)"
 								],
 								"type": "text/javascript"
 							}
@@ -789,7 +999,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 5},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4}, \n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 5},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4}, \n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -811,7 +1021,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1e30f127-0657-4aa0-96da-5321e0559bd8",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -828,7 +1037,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 23},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 19},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 19},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -844,8 +1053,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 8 - CMVO, HMVO, OTHER - weekly wins",
@@ -856,7 +1064,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "436e2982-c159-4fe3-bc7a-3815adfba78f",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -879,13 +1086,48 @@
 									"pm.test('Verify saturday', function () {",
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')+ ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"",
+									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)"
 								],
 								"type": "text/javascript"
 							}
@@ -896,7 +1138,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 2},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6}, \n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 2},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -918,7 +1160,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "11a46b76-e47c-4736-9e65-712275a7764a",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -935,7 +1176,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 16},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 24},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 16},\n            \"weekly_work_schedule__total_holiday_days_in_period\": {\"2020-09-25\": 1},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -951,8 +1192,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 9 - CMVO, HMVO, OTHER - weekly wins",
@@ -963,7 +1203,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "277b3c68-f514-4944-8f63-04834a6ee7e5",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -988,14 +1227,48 @@
 									"pm.test('Verify saturday', function () {",
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')+ ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"",
+									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)"
 								],
 								"type": "text/javascript"
 							}
@@ -1006,7 +1279,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 2},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 1},\n            \"daily_work_schedule__is_holiday\": {\"2020-09-25\": true},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6}, \n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 2},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 5},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 1},\n            \"daily_work_schedule__is_holiday\": {\"2020-09-25\": true},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6}, \n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 4},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1028,7 +1301,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ddf3a90d-7b6b-4f3f-9701-7f93bf36eae8",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -1045,7 +1317,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 16},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 24},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 16},\n            \"weekly_work_schedule__total_holiday_days_in_period\": {\"2020-09-25\": 1},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1061,8 +1333,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 10 - CMVO, HMVO, OTHER - 60 rule wins",
@@ -1073,7 +1344,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "184962f1-03c0-4add-8dc3-576ff924a881",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -1096,13 +1366,47 @@
 									"  pm.expect(_.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(5);",
 									"});",
 									"",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)"
 								],
 								"type": "text/javascript"
 							}
@@ -1113,7 +1417,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 13},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 1},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 14},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 9},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 13},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 1},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 14},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 4},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 9},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1135,7 +1439,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "813fa53e-a9d7-4ad3-8b8f-ee53ede5bd3d",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -1152,7 +1455,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 30},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 17},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 26},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1168,8 +1471,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 11 - HMVO with CMVO and OTHER - daily wins",
@@ -1180,7 +1482,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5fa15a62-2f43-496f-abd9-f47212675686",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -1203,13 +1504,47 @@
 									"  pm.expect(_.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(3);",
 									"});",
 									"",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)",
+									"",
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)",
 									""
 								],
 								"type": "text/javascript"
@@ -1221,7 +1556,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 2},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 2},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1243,7 +1578,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3ee3289f-ad3b-4de1-8c37-9e2b83c4c9d8",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -1260,7 +1594,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 48},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 2},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1276,8 +1610,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 12 - HMVO/CMVO and OTHER - 60 rule wins",
@@ -1288,7 +1621,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a3136d11-3f1f-4833-8c12-e4209f04eea9",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -1314,14 +1646,46 @@
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
 									"",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')+ ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)"
 								],
 								"type": "text/javascript"
 							}
@@ -1332,7 +1696,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 12},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 14},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6},\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 12},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 14},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 6},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"friday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 12},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 6},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1354,8 +1718,8 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "15ce68a1-bd73-4c29-a58c-0bedaecadaeb",
 								"exec": [
+									"\t",
 									"var jsonData = JSON.parse(responseBody);",
 									"pm.test('Verify results', function () {",
 									"  pm.expect(_.get(jsonData, 'persons.calculate_OT.calculate_overtime__overtime_worked_hours.2020-09-25')).to.eql(10);",
@@ -1370,7 +1734,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 32},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 10},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 28},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1386,8 +1750,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Scenario 13 - CMVO with HMVO/ OTHER - daily wins",
@@ -1398,7 +1761,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "17857d07-57f5-4c9b-b54c-52338bb6a8e8",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -1422,13 +1784,46 @@
 									"  pm.expect(_.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')).to.eql(0);",
 									"});",
 									"",
-									"var daily_total = ",
-									"    _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') +",
-									"    _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') + ",
-									"    _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25')",
-									"pm.globals.set(\"weekly_total\", daily_total)"
+									"var daily_ot =",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.calculate_overtime_daily__overtime_worked_hours.2020-09-25') : 0)",
+									"",
+									"var weekly_highway_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_highway_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_city_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_city_operator.2020-09-25') : 0)",
+									"",
+									"var weekly_other_hours = ",
+									"    (_.get(jsonData, 'persons.monday') ? _.get(jsonData, 'persons.monday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.tuesday') ? _.get(jsonData, 'persons.tuesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.wednesday') ? _.get(jsonData, 'persons.wednesday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.thursday') ? _.get(jsonData, 'persons.thursday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.friday') ? _.get(jsonData, 'persons.friday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.saturday') ? _.get(jsonData, 'persons.saturday.daily_work_schedule__total_hours_other.2020-09-25') : 0) +",
+									"    (_.get(jsonData, 'persons.sunday') ? _.get(jsonData, 'persons.sunday.daily_work_schedule__total_hours_other.2020-09-25') : 0)",
+									"",
+									"pm.globals.set(\"weekly_total_ot\", daily_ot)",
+									"pm.globals.set(\"weekly_highway_hours\", weekly_highway_hours)",
+									"pm.globals.set(\"weekly_city_hours\", weekly_city_hours)",
+									"pm.globals.set(\"weekly_other_hours\", weekly_other_hours)"
 								],
 								"type": "text/javascript"
 							}
@@ -1439,7 +1834,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n           \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 10},\n           \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"monday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"tuesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"wednesday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 8},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"thursday\":\n        {\n            \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        },\n        \"saturday\":\n        {\n           \"daily_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 10},\n            \"daily_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 0},\n            \"daily_work_schedule__total_hours_other\": {\"2020-09-25\": 0},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1461,7 +1856,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ec46c83b-1729-472c-b65c-c7fd7747719c",
 								"exec": [
 									"\t",
 									"var jsonData = JSON.parse(responseBody);",
@@ -1478,7 +1872,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": 10},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": 24},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": 10},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"raw": "{\n    \"persons\":\n    {\n        \"calculate_OT\":\n        {\n            \"weekly_work_schedule__total_hours_highway_operator\": {\"2020-09-25\": {{weekly_highway_hours}}},\n            \"weekly_work_schedule__total_hours_city_operator\": {\"2020-09-25\": {{weekly_city_hours}}},\n            \"weekly_work_schedule__total_hours_other\": {\"2020-09-25\": {{weekly_other_hours}}},\n            \"calculate_overtime_daily__overtime_worked_hours\": {\"2020-09-25\": {{weekly_total_ot}}},\n            \"calculate_overtime__overtime_worked_hours\": {\"2020-09-25\": null}\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1494,9 +1888,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

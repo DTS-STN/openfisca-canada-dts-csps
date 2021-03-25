@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "046d5718-73bb-4ebe-818b-63e36ff7779b",
+		"name": "MVOHWR_Authorized_Exemption",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorized Exemption",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Authorized exemption hours are the agreed hours\", function() {",
+							"    pm.expect(_.get(jsonData, 'persons.with_authorized_exemption.standard_hours__weekly_hmvo.2020-09-25')).to.eql(40);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"persons\":\n    {\n        \"with_authorized_exemption\":\n        {\n            \"standard_hours__weekly_alternative\": {\"2020-09-25\": 40},\n            \"standard_hours__is_hmvo_weekly_only\": {\"2020-09-25\": true},\n            \"standard_hours__has_authorized_exemption\": {\"2020-09-25\": null},\n            \"standard_hours__weekly_hmvo\": {\"2020-09-25\": null}\n        },\n        \"without_authorized_exemption\":\n        {\n            \"standard_hours__weekly_alternative\": {\"2020-09-25\": 40},\n            \"standard_hours__is_hmvo_weekly_only\": {\"2020-09-25\": false},\n            \"standard_hours__has_authorized_exemption\": {\"2020-09-25\": null},\n            \"standard_hours__weekly_hmvo\": {\"2020-09-25\": null}\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{of_uri}}",
+					"host": [
+						"{{of_uri}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
