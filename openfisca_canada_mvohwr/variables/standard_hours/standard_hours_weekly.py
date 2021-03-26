@@ -45,7 +45,7 @@ class standard_hours__weekly_hmvo(Variable):
 
     def formula(persons, period, parameters):
         hmvo_weekly_hours = persons("hmvo_weekly_mvo_hours_of_work", period)
-        hmvo_daily_hours = 10  # maybe? does anyone really know?
+        hmvo_daily_hours = persons("hmvo_daily_holiday_reduction_hours", period)  
 
         nb_holidays = persons("weekly_work_schedule__total_holiday_days_in_period", period)
         adjusted_holiday_hours = hmvo_weekly_hours - (hmvo_daily_hours * nb_holidays)
