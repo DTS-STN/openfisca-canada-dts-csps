@@ -1,161 +1,259 @@
 {
 	"info": {
-		"_postman_id": "5dd9d95b-1dad-455d-809c-88ef4ad34883",
+		"_postman_id": "3be3a200-6a84-4c89-b7f3-50888c488067",
 		"name": "MVOHWR_Driver_Classification",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "MVO",
-			"event": [
+			"name": "Unit Tests",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"\t",
-							"var jsonData = JSON.parse(responseBody);",
-							"",
-							"pm.test('Verify classification - is MVO', function () {",
-							"  pm.expect(_.get(jsonData, 'persons.driver_is_mvo.mvo__is_motor_vehicle_operator.2020-09-25')).to.eql(true);",
-							"});",
-							"",
-							"pm.test('Not MVO - drives rail operated vehicle', function () {",
-							"  pm.expect(_.get(jsonData, 'persons.vehicle_is_designed_for_rails.mvo__is_motor_vehicle_operator.2020-09-25')).to.eql(false);",
-							"});",
-							"",
-							"pm.test('Not MVO - drives muscle operated vehicle', function () {",
-							"  pm.expect(_.get(jsonData, 'persons.vehicle_is_muscle_powered.mvo__is_motor_vehicle_operator.2020-09-25')).to.eql(false);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"persons\":\n    {\n        \"driver_is_mvo\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null}\n        },\n        \"vehicle_is_designed_for_rails\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null}\n        },\n        \"vehicle_is_muscle_powered\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": true},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null}\n        }\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"name": "MVO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\t",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test('Verify classification - is MVO', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.driver_is_mvo.mvo__is_motor_vehicle_operator.2020-09-25')).to.eql(true);",
+									"});",
+									"",
+									"pm.test('Not MVO - drives rail operated vehicle', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.vehicle_is_designed_for_rails.mvo__is_motor_vehicle_operator.2020-09-25')).to.eql(false);",
+									"});",
+									"",
+									"pm.test('Not MVO - drives muscle operated vehicle', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.vehicle_is_muscle_powered.mvo__is_motor_vehicle_operator.2020-09-25')).to.eql(false);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persons\":\n    {\n        \"driver_is_mvo\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null}\n        },\n        \"vehicle_is_designed_for_rails\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null}\n        },\n        \"vehicle_is_muscle_powered\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": true},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{of_uri}}",
+							"host": [
+								"{{of_uri}}"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{of_uri}}",
-					"host": [
-						"{{of_uri}}"
-					]
+				{
+					"name": "CMVO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persons\":\n    {\n        \"classified_as_cmvo\":\n        {\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": false},\n            \"mvo__is_classified_as_cmvo\": {\"2020-09-25\": null}\n        },\n        \"driver_operates_close_to_home_terminal\":\n        {\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 8},\n            \"mvo__operates_close_to_home_terminal\": {\"2020-09-25\": null}\n        },\n        \"driver_operates_far_from_home_terminal\":\n        {\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 20},\n            \"mvo__operates_close_to_home_terminal\": {\"2020-09-25\": null}\n        },\n        \"driver_is_cmvo\":\n        {\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": true},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": false},\n            \"mvo__is_classified_as_cmvo\": {\"2020-09-25\": false},\n            \"mvo__operates_close_to_home_terminal\": {\"2020-09-25\": true},\n            \"mvo__is_cmvo\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{of_uri}}",
+							"host": [
+								"{{of_uri}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HMVO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persons\":\n    {\n        \"driver_is_hmvo\":\n        {\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": true},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo\": {\"2020-09-25\": false},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{of_uri}}",
+							"host": [
+								"{{of_uri}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bus Operator",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persons\":\n    {\n        \"driver_is_bus_operator\":\n        {\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": true},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": true},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{of_uri}}",
+							"host": [
+								"{{of_uri}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "CMVO",
-			"event": [
+			"name": "Scenarios",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = JSON.parse(responseBody);",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"persons\":\n    {\n        \"classified_as_cmvo\":\n        {\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": false},\n            \"mvo__is_classified_as_cmvo\": {\"2020-09-25\": null}\n        },\n        \"driver_operates_close_to_home_terminal\":\n        {\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 8},\n            \"mvo__operates_close_to_home_terminal\": {\"2020-09-25\": null}\n        },\n        \"driver_operates_far_from_home_terminal\":\n        {\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 20},\n            \"mvo__operates_close_to_home_terminal\": {\"2020-09-25\": null}\n        },\n        \"driver_is_cmvo\":\n        {\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": true},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": false},\n            \"mvo__is_classified_as_cmvo\": {\"2020-09-25\": false},\n            \"mvo__operates_close_to_home_terminal\": {\"2020-09-25\": true},\n            \"mvo__is_cmvo\": {\"2020-09-25\": null}\n        }\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"name": "Driver Classification Scenarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\t",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test('HMVO', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.HMVO.mvo__is_hmvo.2020-09-25')).to.eql(true);",
+									"});",
+									"",
+									"pm.test('CMVO_under_10_miles', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.CMVO_under_10_miles.mvo__is_cmvo.2020-09-25')).to.eql(true);",
+									"});",
+									"",
+									"pm.test('CMVO_prevailing_industry_practice', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.CMVO_prevailing_industry_practice.mvo__is_cmvo.2020-09-25')).to.eql(true);",
+									"});",
+									"",
+									"pm.test('CMVO_collective_agreement', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.CMVO_collective_agreement.mvo__is_cmvo.2020-09-25')).to.eql(true);",
+									"});",
+									"",
+									"pm.test('BMVO_bus_operator', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.BMVO_bus_operator.mvo__is_bus_operator.2020-09-25')).to.eql(true);",
+									"});",
+									"",
+									"pm.test('Other_muscle_power', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.Other_muscle_power.mvo__is_other.2020-09-25')).to.eql(true);",
+									"});",
+									"",
+									"pm.test('Other_rails', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.Other_rails.mvo__is_other.2020-09-25')).to.eql(true);",
+									"});",
+									"",
+									"pm.test('Other_not_operated_by_employee', function () {",
+									"  pm.expect(_.get(jsonData, 'persons.Other_not_operated_by_employee.mvo__is_other.2020-09-25')).to.eql(true);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					}
-				},
-				"url": {
-					"raw": "{{of_uri}}",
-					"host": [
-						"{{of_uri}}"
-					]
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persons\":\n    {\n        \"HMVO\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": false},\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": false},\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 12},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null},\n            \"mvo__is_other\": {\"2020-09-25\": null}\n\n        },\n       \"CMVO_under_10_miles\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": false},\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": false},\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 9.5},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null},\n            \"mvo__is_cmvo\": {\"2020-09-25\": null},\n            \"mvo__is_other\": {\"2020-09-25\": null}\n\n        },\n        \"CMVO_prevailing_industry_practice\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": false},\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": true},\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 12},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null},\n            \"mvo__is_cmvo\": {\"2020-09-25\": null},\n            \"mvo__is_other\": {\"2020-09-25\": null}\n\n        },\n        \"CMVO_collective_agreement\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": false},\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": true},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": false},\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 12},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null},\n            \"mvo__is_cmvo\": {\"2020-09-25\": null},\n            \"mvo__is_other\": {\"2020-09-25\": null}\n\n        },\n        \"BMVO_bus_operator\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": true},\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": false},\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 12},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null},\n            \"mvo__is_cmvo\": {\"2020-09-25\": null},\n            \"mvo__is_other\": {\"2020-09-25\": null}\n        },\n        \"Other_muscle_power\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": true},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": false},\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": false},\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 12},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null},\n            \"mvo__is_cmvo\": {\"2020-09-25\": null},\n            \"mvo__is_other\": {\"2020-09-25\": null}\n        },\n        \"Other_rails\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": true},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": false},\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": false},\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 12},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null},\n            \"mvo__is_cmvo\": {\"2020-09-25\": null},\n            \"mvo__is_other\": {\"2020-09-25\": null}\n        },\n        \"Other_not_operated_by_employee\":\n        {\n            \"mvo__vehicle_is_operated_by_employee\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_designed_for_rails\": {\"2020-09-25\": false},\n            \"mvo__vehicle_is_powered_by_muscles\": {\"2020-09-25\": false},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": false},\n            \"mvo__has_collective_cmvo_agreement\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo_under_prevailing_industry_practice\": {\"2020-09-25\": false},\n            \"mvo__distance_from_home_terminal\": {\"2020-09-25\": 12},\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": null},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null},\n            \"mvo__is_cmvo\": {\"2020-09-25\": null},\n            \"mvo__is_other\": {\"2020-09-25\": null}\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{of_uri}}",
+							"host": [
+								"{{of_uri}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		},
 		{
-			"name": "HMVO",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = JSON.parse(responseBody);",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"persons\":\n    {\n        \"driver_is_hmvo\":\n        {\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": true},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": false},\n            \"mvo__is_cmvo\": {\"2020-09-25\": false},\n            \"mvo__is_hmvo\": {\"2020-09-25\": null}\n        }\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{of_uri}}",
-					"host": [
-						"{{of_uri}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Bus Operator",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = JSON.parse(responseBody);",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"persons\":\n    {\n        \"driver_is_bus_operator\":\n        {\n            \"mvo__is_motor_vehicle_operator\": {\"2020-09-25\": true},\n            \"mvo__operates_a_bus\": {\"2020-09-25\": true},\n            \"mvo__is_bus_operator\": {\"2020-09-25\": null}\n        }\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{of_uri}}",
-					"host": [
-						"{{of_uri}}"
-					]
-				}
-			},
-			"response": []
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
