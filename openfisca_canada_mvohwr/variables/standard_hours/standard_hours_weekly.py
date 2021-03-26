@@ -44,11 +44,9 @@ class standard_hours__weekly_hmvo(Variable):
     reference = u"https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._990/page-1.html#docCont"
 
     def formula(persons, period, parameters):
-
         hmvo_weekly_hours = where (persons("standard_hours__has_authorized_exemption", period),
              persons("standard_hours__weekly_alternative", period),
              persons("hmvo_weekly_mvo_hours_of_work", period))
-
         hmvo_daily_hours = persons("hmvo_daily_holiday_reduction_hours", period)  
 
         nb_holidays = persons("weekly_work_schedule__total_holiday_days_in_period", period)
