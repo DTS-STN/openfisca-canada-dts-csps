@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "4efdf20f-7033-49e5-9c63-3cb45e059801",
+		"name": "MVOHWR - Is Covered under MVO Regulation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Is Covered under MVOHWR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\t",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test('employee_does_not_transport_goods_or_passangers_or_mail', function () {",
+							"  pm.expect(_.get(jsonData, 'persons.employee_does_not_transport_goods_or_passangers_or_mail.is_covered_by_mvohwr.2020-09-25')).to.eql(false);",
+							"});",
+							"",
+							"pm.test('employee_does_both_transport_goods_or_passangers', function () {",
+							"  pm.expect(_.get(jsonData, 'persons.employee_does_both_transport_goods_or_passangers.is_covered_by_mvohwr.2020-09-25')).to.eql(true);",
+							"});",
+							"",
+							"pm.test('employee_does_transport_mail', function () {",
+							"  pm.expect(_.get(jsonData, 'persons.employee_does_transport_mail.is_covered_by_mvohwr.2020-09-25')).to.eql(true);",
+							"});",
+							"",
+							"pm.test('employee_does_not_have_employment_relationship', function () {",
+							"  pm.expect(_.get(jsonData, 'persons.employee_does_not_have_employment_relationship.is_covered_by_mvohwr.2020-09-25')).to.eql(false);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"persons\":\n    {\n        \"employee_does_not_transport_goods_or_passangers_or_mail\":\n        {\n            \"does_transport_goods_or_passangers_by_motor_vehicle\": {\"2020-09-25\": false},\n            \"does_transport_mail_in_canada\": {\"2020-09-25\": false},\n            \"falls_under_part_three_of_clc\": {\"2020-09-25\": true},\n            \"is_there_an_employment_relationship\": {\"2020-09-25\": true},\n            \"is_covered_by_mvohwr\": {\"2020-09-25\": null}\n\n        },\n       \"employee_does_both_transport_goods_or_passangers\":\n        {\n            \"does_transport_goods_or_passangers_by_motor_vehicle\": {\"2020-09-25\": true},\n            \"does_transport_mail_in_canada\": {\"2020-09-25\": false},\n            \"falls_under_part_three_of_clc\": {\"2020-09-25\": true},\n            \"is_there_an_employment_relationship\": {\"2020-09-25\": true},\n            \"is_covered_by_mvohwr\": {\"2020-09-25\": null}\n\n\n        },\n        \"employee_does_transport_mail\":\n        {\n            \"does_transport_goods_or_passangers_by_motor_vehicle\": {\"2020-09-25\": false},\n            \"does_transport_mail_in_canada\": {\"2020-09-25\": true},\n            \"falls_under_part_three_of_clc\": {\"2020-09-25\": true},\n            \"is_there_an_employment_relationship\": {\"2020-09-25\": true},\n            \"is_covered_by_mvohwr\": {\"2020-09-25\": null}\n        },\n        \"employee_does_not_have_employment_relationship\":\n        {\n            \"does_transport_goods_or_passangers_by_motor_vehicle\": {\"2020-09-25\": true},\n            \"does_transport_mail_in_canada\": {\"2020-09-25\": false},\n            \"falls_under_part_three_of_clc\": {\"2020-09-25\": true},\n            \"is_there_an_employment_relationship\": {\"2020-09-25\": false},\n            \"is_covered_by_mvohwr\": {\"2020-09-25\": null}\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{of_uri}}",
+					"host": [
+						"{{of_uri}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
